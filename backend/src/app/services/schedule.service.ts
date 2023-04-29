@@ -16,7 +16,7 @@ class ScheduleService {
     const schedule = await models.SCHEDULE.findByPk(id);
 
     if (!schedule) {
-      throw boom.notFound("Schedule no encontrado");
+      throw boom.notFound("Horario no encontrado");
     }
     return schedule;
   }
