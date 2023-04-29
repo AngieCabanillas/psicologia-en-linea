@@ -45,15 +45,10 @@ const UserSchema: ModelAttributes<User, UserType> = {
 
 class User extends Model {
   static associate(models: { [key: string]: ModelCtor<Model> }) {
-    /* this.hasMany(models.CLIENT, {
-      as: "client",
-      foreignKey: "customerUserId",
+    this.hasMany(models.SCHEDULE, {
+      as: "schedule",
+      foreignKey: "userId",
     });
-
-    this.hasMany(models.COMMENT, {
-      as: "comment",
-      foreignKey: "customerUserId",
-    }); */
   }
 
   static config(sequelize: Sequelize) {

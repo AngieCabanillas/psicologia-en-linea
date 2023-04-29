@@ -1,6 +1,6 @@
 export type ScheduleType = {
   id: number;
-  days: Array<string>;
+  days: string;
   detail: string;
   userId: number;
 };
