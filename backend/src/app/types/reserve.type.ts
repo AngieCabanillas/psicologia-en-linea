@@ -4,6 +4,6 @@ export type ReserveType = {
   description: string;
   modality: string;
   state: string;
-  userSpecialistId: number;
+  clientId: number;
   userId: number;
 };

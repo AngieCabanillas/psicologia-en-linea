@@ -1,0 +1,56 @@
+import {
+  Model,
+  DataTypes,
+  Sequelize,
+  ModelAttributes,
+  ModelCtor,
+} from "sequelize";
+import { ClientType } from "../../app/types/client.type";
+
+const CLIENT_TABLE = "CLIENT";
+
+const ClientSchema: ModelAttributes<Client, ClientType> = {
+  id: {
+    primaryKey: true,
+    allowNull: false,
+    autoIncrement: true,
+    field: "id_user",
+    type: DataTypes.INTEGER,
+  },
+  name: {
+    allowNull: false,
+    type: DataTypes.STRING(100),
+  },
+  lastName: {
+    allowNull: false,
+    field: "last_name",
+    type: DataTypes.STRING(100),
+  },
+  email: {
+    allowNull: false,
+    unique: true,
+    type: DataTypes.STRING(70),
+  },
+  password: {
+    allowNull: false,
+    unique: true,
+    type: DataTypes.TEXT,
+  },
+};
+
+class Client extends Model {
+  static associate(models: { [key: string]: ModelCtor<Model> }) {
+    //associate
+  }
+
+  static config(sequelize: Sequelize) {
+    return {
+      sequelize,
+      tableName: CLIENT_TABLE,
+      modelName: CLIENT_TABLE,
+      timestamps: false,
+    };
+  }
+}
+
+export default { CLIENT_TABLE, ClientSchema, Client };
