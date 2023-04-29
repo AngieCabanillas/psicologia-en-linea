@@ -49,6 +49,11 @@ class User extends Model {
       as: "schedule",
       foreignKey: "userId",
     });
+
+    this.hasMany(models.RESERVE, {
+      as: "reserve",
+      foreignKey: "userId",
+    });
   }
 
   static config(sequelize: Sequelize) {

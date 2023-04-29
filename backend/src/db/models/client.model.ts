@@ -14,7 +14,7 @@ const ClientSchema: ModelAttributes<Client, ClientType> = {
     primaryKey: true,
     allowNull: false,
     autoIncrement: true,
-    field: "id_user",
+    field: "id_client",
     type: DataTypes.INTEGER,
   },
   name: {
@@ -40,7 +40,10 @@ const ClientSchema: ModelAttributes<Client, ClientType> = {
 
 class Client extends Model {
   static associate(models: { [key: string]: ModelCtor<Model> }) {
-    //associate
+    this.hasMany(models.RESERVE, {
+      as: "reserve",
+      foreignKey: "clientId",
+    });
   }
 
   static config(sequelize: Sequelize) {
