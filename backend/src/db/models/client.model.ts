@@ -33,8 +33,7 @@ const ClientSchema: ModelAttributes<Client, ClientType> = {
   },
   password: {
     allowNull: false,
-    unique: true,
-    type: DataTypes.TEXT,
+    type: DataTypes.TEXT("tiny"),
   },
 };
 

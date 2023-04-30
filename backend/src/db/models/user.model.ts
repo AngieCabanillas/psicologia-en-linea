@@ -38,8 +38,7 @@ const UserSchema: ModelAttributes<User, UserType> = {
   },
   password: {
     allowNull: false,
-    unique: true,
-    type: DataTypes.TEXT,
+    type: DataTypes.TEXT("tiny"),
   },
 };
 
