@@ -53,6 +53,11 @@ class User extends Model {
       as: "reserve",
       foreignKey: "userId",
     });
+
+    this.hasMany(models.ACADEMIC_INFORMATION, {
+      as: "academicInformation",
+      foreignKey: "userId",
+    });
   }
 
   static config(sequelize: Sequelize) {
