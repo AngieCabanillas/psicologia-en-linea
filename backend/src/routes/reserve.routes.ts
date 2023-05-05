@@ -65,6 +65,7 @@ router.put(
   }
 );
 
+//MODALITY: MORNING, AFTERNOON, NIGHT
 //STATE: INIT, ACCEPTED, REFUSED
 router.put(
   "/state/:id",
