@@ -5,14 +5,14 @@ import {
   ModelAttributes,
   ModelCtor,
 } from "sequelize";
-import { AcedemicInformationType } from "../../app/types/academic-information.type";
+import { AcademicInformationType } from "../../app/types/academic-information.type";
 import userModel from "./user.model";
 
 const ACADEMIC_INFORMATION_TABLE = "ACADEMIC_INFORMATION";
 
 const AcademicInformationSchema: ModelAttributes<
   AcademicInformation,
-  AcedemicInformationType
+  AcademicInformationType
 > = {
   id: {
     primaryKey: true,

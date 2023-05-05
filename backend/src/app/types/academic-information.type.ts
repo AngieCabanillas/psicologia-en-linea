@@ -1,4 +1,4 @@
-export type AcedemicInformationType = {
+export type AcademicInformationType = {
   id: number;
   title: string;
   institution: string;
