@@ -65,7 +65,7 @@ router.put(
   }
 );
 
-//STATE: ACCEPTED, REFUSED
+//STATE: INIT, ACCEPTED, REFUSED
 router.put(
   "/state/:id",
   validatorHandler(getReserveSchema, "params"),
