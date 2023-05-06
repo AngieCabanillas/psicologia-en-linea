@@ -1,0 +1,21 @@
+.title {
+  font-size: 56px;
+  font-weight: 700;
+  color: #2D3648;
+
+}
+
+.presentation {
+  border-bottom: 3px solid #2D3648;
+
+}
+
+.subrayado {
+  background-color: #c2cee6;
+}
+
+.paragraph {
+  font-size: 16px;
+  line-height: 30px;
+
+}

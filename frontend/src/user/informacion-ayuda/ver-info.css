@@ -1,0 +1,60 @@
+.information img{
+    height: 15rem;
+}
+.ayuda{
+    display: flex;
+    align-items: center;
+   
+}
+
+.instituciones{
+   
+    width: 50%;
+   padding-left: 5rem;
+  
+}
+.tabla-titulo{
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2D3648;
+    padding: 1rem ;
+}
+.tabla-container {
+    max-width:600px;
+    min-width: none;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .tabla-fila {
+    margin: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+  }
+  
+  .seccion-ayuda{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-paragraph{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2;
+    text-align: justify;
+  }
+  .information{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  ul {
+    list-style-type: circle;
+  }
+  
