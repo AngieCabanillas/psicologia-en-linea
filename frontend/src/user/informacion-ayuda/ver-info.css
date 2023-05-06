@@ -1,60 +1,58 @@
-.information img{
-    height: 15rem;
-}
-.ayuda{
-    display: flex;
-    align-items: center;
-   
+.information img {
+  height: 14rem;
+  object-fit: cover;
 }
 
-.instituciones{
-   
-    width: 50%;
-   padding-left: 5rem;
-  
+.ayuda {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center
 }
-.tabla-titulo{
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #2D3648;
-    padding: 1rem ;
+
+.instituciones {
+  width: 40%
 }
-.tabla-container {
-    max-width:600px;
-    min-width: none;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .tabla-fila {
-    margin: 10px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 5px;
-  }
-  
-  .seccion-ayuda{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+
+.seccion-ayuda {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-paragraph {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2;
+  text-align: justify;
+}
+
+.especialidad-title1 {
+  font-size: 27px;
+  font-weight: 700;
+  color: #2D3648;
+
+}
+
+ul {
+  list-style-type: circle;
+}
+
+@media only screen and (max-width: 800px) {
+  .instituciones {
+    width: 100%;
+    margin-top: 5rem;
   }
 
-  .info-paragraph{
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 2;
-    text-align: justify;
+  .seccion-ayuda {
+    width: 100%;
+
   }
-  .information{
-    display: flex;
-    justify-content: space-between;
+
+  .ayuda .instituciones {
+    margin-top: 2rem;
   }
-  
-  ul {
-    list-style-type: circle;
-  }
-  
+}

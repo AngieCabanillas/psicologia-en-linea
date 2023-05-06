@@ -8,7 +8,6 @@ export const PresentationInformationPage = () => {
                     <div className="title relative z-10">
                         Información de Ayuda
                     </div>
-                    <div className='subrayado absolute rounded w-96 top-8 h-8 z-0 inset-0 mx-auto' />
                     <div className='paragraph mt-10'>
                     Nuestra sección de ayuda psicológica está diseñada para ofrecerte apoyo emocional y orientación personalizada para superar momentos difíciles y mejorar tu bienestar emocional. Encontrarás información y recursos útiles para manejar el estrés, la ansiedad, la depresión, problemas alimenticios o de pareja
                     </div>

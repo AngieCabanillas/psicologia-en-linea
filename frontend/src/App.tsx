@@ -33,12 +33,10 @@ function App() {
         <Routes>
           <Route path='/home' element= { <Footer/> } />
           <Route path='/especialistas' element= { <Footer/> } />
+          <Route path='/info-ayuda' element= { <Footer/> } />
           
         </Routes>
-        <Routes>
-          <Route path='/home' element= { <Footer/> } />
-          <Route path='/info-ayuda' element= { <Footer/> } />
-        </Routes>
+        
         
     </>
   )
