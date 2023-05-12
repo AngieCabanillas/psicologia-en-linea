@@ -12,8 +12,8 @@ export const MenuItems = [
     },
     {
         title: 'Historial de Citas',
-        url: '/registro',
+        url: '/historial',
         cName: 'nav-links'
-    }
+    },
     
 ]

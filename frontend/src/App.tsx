@@ -8,6 +8,7 @@ import Home from './home/Home';
 import Footer from './components/Footer/Footer';
 import { EspecialistasPag } from './user/ver-especialistas/ver-especialistas';
 import { InfoAyudaPag } from './user/informacion-ayuda/ver-info';
+import { HistorialComponent } from './user/historial-citas/historial';
 
 
 
@@ -20,6 +21,7 @@ function App() {
           <Route path='/home' element= { <Navbar/> } />
           <Route path='/especialistas' element= { <Navbar/> } />
           <Route path='/info-ayuda' element= { <Navbar/> } />
+          <Route path='/historial' element= { <Navbar/> } />
         </Routes>
 
           <Routes>
@@ -28,12 +30,14 @@ function App() {
             <Route path='/registro' element= {<RegistroUsuario />} />
             <Route path='/especialistas' element= {<EspecialistasPag />} />
             <Route path='/info-ayuda' element= {<InfoAyudaPag />} />
+            <Route path='/historial' element= {<HistorialComponent />} />
           </Routes>
 
         <Routes>
           <Route path='/home' element= { <Footer/> } />
           <Route path='/especialistas' element= { <Footer/> } />
           <Route path='/info-ayuda' element= { <Footer/> } />
+          <Route path='/historial' element= { <Footer/> } />
           
         </Routes>
         
