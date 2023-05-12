@@ -1,4 +1,4 @@
-import { Spin,  notification  } from 'antd'
+import { Button, Form, Modal, Spin,   } from 'antd'
 import './historial.css'
 import { CheckOutlined, ClockCircleOutlined, FastBackwardOutlined } from '@ant-design/icons'
 
@@ -14,6 +14,9 @@ export const HistorialComponent = () =>{
     const [loading, setLoading] = useState<boolean>(true);
     const [dataset, setDataset] = useState<Cita[]>([]);
     // const [api, contextHolder] = notification.useNotification();
+    const [modalInfoOpen, setModalInfoOpen] = useState(false);
+    const [dataForm, setDataForm] = useState<any>({});
+    const [form] = Form.useForm();
 
 
     interface Cita {
@@ -203,26 +206,34 @@ export const HistorialComponent = () =>{
         
     };
 
+    
+    const showInfoModal = (v) =>{
+        console.log(v);
+        
+        if (!v) v = {id: 0, especialista: '', horario: '', status: ''}
+        setModalInfoOpen(true)
+        setDataForm(v)
+    }
+    
+    
     let cardsAceptadas = historial.map(cita => {
         return (cita.status == 'scheduled' ?
-            <CitaComponent {...cita} />
+            <CitaComponent cita={cita} showInfoModal={showInfoModal}/>
             : null
         )
     })
     let cardsEnEspera = historial.map(cita => {
         return (cita.status == 'waiting' ?
-            <CitaComponent {...cita} container={true} handleDelete={handleDelete} />
+            <CitaComponent cita={cita} container={true} handleDelete={handleDelete} showInfoModal={showInfoModal} />
             : null
         )
     })
     let cardsPasadas = historial.map(cita => {
         return (cita.status == 'completed' ?
-            <CitaComponent {...cita} />
+            <CitaComponent cita={cita} showInfoModal={showInfoModal}/>
             : null
         )
     })
-
-
 
     return (
         <>
@@ -269,6 +280,25 @@ export const HistorialComponent = () =>{
                         </div>
                     </section>
                 </section>
+                <Modal
+                title="Ver información de cita"
+                centered
+                open={modalInfoOpen}
+                onCancel={() => setModalInfoOpen(false)}
+                footer={[
+                    <Button type="primary" style={{ backgroundColor: '#2d3648'}} onClick={() => setModalInfoOpen(false)}>
+                        Cerrar
+                    </Button>,
+                ]}
+                >
+                    <Form form={form} initialValues={dataForm}>
+                        <p><strong>Código:</strong> {dataForm.id} </p>
+                        <p><strong>Especialista:</strong> {dataForm.especialista} </p>
+                        <p><strong>Horario:</strong> {dataForm.fechaFinal} </p>
+                        <p><strong>Estado:</strong> {dataForm.status} </p>
+
+                    </Form>   
+                </Modal>
             </Spin>
         </>
     )

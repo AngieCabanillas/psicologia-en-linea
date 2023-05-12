@@ -6,7 +6,9 @@ import { es } from 'date-fns/locale';
 
 
 export function CitaComponent(props){
-    const fecha = new Date(props.horario);
+    const cita = props.cita
+    
+    const fecha = new Date(cita.horario);
     const fechaFormateada = format(fecha, "EEEE dd 'de' MMMM, yyyy", { locale: es });
     const fechaFinal = fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
 
@@ -18,14 +20,14 @@ export function CitaComponent(props){
             <div className="cita__content p-10 w-full flex flex-col md:flex-row items-center justify-between">
                 <div className="cita__data">
                     <div className='cita__title text-lg font-semibold'>
-                        {props.especialista}
+                        {cita.especialista}
                     </div>
                     <div className='cita__paragraph text-base font-medium'>
                         {fechaFinal}
                     </div>
                 </div>
                 <div className="cita__actions flex gap-1 pl-0 mt-10 md:mt-0 md:pl-5">
-                    <button className={'cita__button cita__button--see w-10 sm:w-14 h-10 sm:h-14 flex items-center justify-center'}>
+                    <button onClick={() => props.showInfoModal({...cita, fechaFinal})} className={'cita__button cita__button--see w-10 sm:w-14 h-10 sm:h-14 flex items-center justify-center'}>
                         <EyeOutlined />
                     </button>
                     {props.container && (
@@ -38,7 +40,7 @@ export function CitaComponent(props){
                             <Popconfirm
                                 key={1}
                                 title="¿Está seguro de eliminar este usuario?"
-                                onConfirm={() => props.handleDelete(props.id)}
+                                onConfirm={() => props.handleDelete(cita.id)}
                                 onCancel={() => console.log("cancel")}
                                 okText="Sí"
                                 cancelText="No"
