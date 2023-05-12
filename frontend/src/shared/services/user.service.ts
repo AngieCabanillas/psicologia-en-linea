@@ -18,7 +18,7 @@ export const createUser = async (user: Omit<UserType, "id">) => {
 };
 
 export const editUser = async (user: Omit<UserType, "id">, id: number) => {
-  return await axiosClient.patch(`${url}/${id}`, user);
+  return await axiosClient.put(`${url}/${id}`, user);
 };
 
 export const deleteUser = async (id: number) => {
