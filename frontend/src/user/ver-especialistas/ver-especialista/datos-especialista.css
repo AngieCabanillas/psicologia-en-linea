@@ -1,0 +1,21 @@
+.presentation {
+    border-bottom: 3px solid #2D3648;
+
+}
+
+.presentation__title {
+    font-size: 56px;
+    font-weight: 700;
+    color: #2D3648;
+}
+
+
+.presentation__undeline {
+    background-color: #c2cee6;
+}
+
+.presentation__paragraph {
+    font-size: 16px;
+    line-height: 30px;
+
+}

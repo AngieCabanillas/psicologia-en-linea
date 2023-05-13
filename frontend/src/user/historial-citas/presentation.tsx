@@ -3,7 +3,7 @@ import './presentation.css'
 
 export const HistorialPresentationComponent = () =>{
     return (
-        <section className='presentation p-20 flex items-center justify-center' style={{height: 'calc(100vh - 100px)'}}>
+        <section className='presentation p-20 flex flex-col md:flex-row items-center justify-center' style={{height: 'calc(100vh - 100px)'}}>
           <div className='content flex items-center justify-center text-center w-full'>
             <div className='max-w-lg relative'>
               <div className="title relative z-10">

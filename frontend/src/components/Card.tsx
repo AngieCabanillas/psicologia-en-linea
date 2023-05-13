@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Card.css'
 
 export function CardComponent(props){
@@ -5,7 +6,7 @@ export function CardComponent(props){
     return(
         <div className="contenedor-card p-10 max-w-xl flex items-center mb-10">
             <div className="contenedor-img">
-                <img className="imagen" src="../../public/img/user.png" alt="foto de usuario" />
+                <img className="imagen" src="/img/user.png" alt="foto de usuario" />
             </div>
             <div className="info text-justify">
                 <div className="nombres mb-5">
@@ -15,9 +16,11 @@ export function CardComponent(props){
                     {props.detalles}
                 </div>
                 <div>
-                    <button className="btn-ver">
-                        Ver Perfil
-                    </button>
+                    <Link to="/especialistas/ver-especialista">
+                        <button className="btn-ver">
+                            Ver Perfil
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

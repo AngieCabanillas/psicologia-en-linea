@@ -1,4 +1,4 @@
-import  logo from '/public/svg/logo.svg' 
+import  logo from '/svg/logo.svg' 
 import "./Login.css"
 
 

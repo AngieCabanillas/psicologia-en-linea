@@ -1,6 +1,6 @@
 import { MenuItems } from "./MenuItem";
 import './Navbar.css'
-import  logo from '/public/svg/logo.svg' 
+import  logo from '/svg/logo.svg' 
 import { Button } from "../Button";
 import {NavLink} from "react-router-dom";
 

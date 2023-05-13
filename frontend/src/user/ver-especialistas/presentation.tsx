@@ -15,6 +15,5 @@ export const PresentationEspecialistasPage = () => {
                 </div>
             </div>
         </section>
-
     )
 }
