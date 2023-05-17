@@ -1,12 +1,7 @@
 nav {
     position: fixed;
     height: 80px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     font-size: 1rem;
-    width: 100%;
     padding: 20px;
     border-bottom: 1px solid #333;
     z-index: 50;
@@ -14,22 +9,15 @@ nav {
     backdrop-filter: blur(5px);
 }
 
-
 .logo-nav {
     justify-self: start;
     height: 34px;
 }
 
 .nav-menu {
-
-    display: grid;
     grid-template-columns: repeat(3, auto);
-    gap: 10px;
     list-style: none;
-    text-align: center;
     width: 60vw;
-    justify-content: end;
-    margin-right: 1rem;
 
 }
 
@@ -51,12 +39,10 @@ nav {
     background: #2D3648;
     color: white;
     border-radius: 4px;
-
 }
 
-.button-group {
-    display: flex;
-}
-.button-group div {
-    margin-right: 20px;
+.dropdown-content{
+    background-color: #fff; 
+    border: 1px solid #ccc; 
+    padding: 10px; 
 }

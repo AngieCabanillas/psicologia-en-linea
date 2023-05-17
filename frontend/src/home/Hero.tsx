@@ -1,6 +1,7 @@
 import { Button } from "../components/Button"
 import heroImg from "/img/fondo-hero.jpg"
 import "./Hero.css"
+import { Link } from "react-router-dom";
 
 const handleClick1 = () => {
     redirectTo("/especialistas");
@@ -21,10 +22,14 @@ export default function Hero () {
                 <h3>Te damos la bienvenida a Serenity</h3>
                 <h1>El apoyo que necesitas</h1>
                 <p>Conecta con nuestros especialistas y déjanos acompañarte a mejorar tu bienestar emocional.</p>
-                <div className="button-group">
-                    <Button buttonStyle="btn-primary" onClick={handleClick2}>Información de Ayuda</Button>
+                <div className="button-group flex">
+                <Link to="/info-ayuda/">
+                        <Button buttonStyle="btn-primary" onClick={handleClick2}>Información de Ayuda</Button>
+                    </Link>
                     <div className="espacio-entre-componentes"></div>
-                    <Button buttonStyle="btn-outline" onClick={handleClick1}>Especialistas</Button>
+                    <Link to="/especialistas/">
+                        <Button buttonStyle="btn-outline" onClick={handleClick1}>Especialistas</Button>
+                    </Link>
                 </div>
             </div>
        </div>

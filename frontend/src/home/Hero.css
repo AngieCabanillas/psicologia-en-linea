@@ -35,6 +35,10 @@
     line-height: 1.5rem;
 }
 
+.espacio-entre-componentes{
+    width: 10px;
+}
+
 @media screen and (max-width: 555px) {
 
     .hero-text {
