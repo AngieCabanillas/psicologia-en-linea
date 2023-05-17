@@ -37,7 +37,7 @@ export const CitasComponent = () => {
   return (
     <>
       <Spin spinning={loading} className="h-100" indicator={circleIcon}>
-        <div className="content p-20" style={{ backgroundColor: "#EDF0F7" }}>
+        <div className="content p-20">
           <div className="py-10">
             <input
               className="w-full h-14 rounded-lg border-2 border-solid border-black p-4"
