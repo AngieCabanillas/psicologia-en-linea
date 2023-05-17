@@ -10,7 +10,7 @@ import { EspecialistasPag } from "./user/ver-especialistas/ver-especialistas";
 import { InfoAyudaPag } from "./user/informacion-ayuda/ver-info";
 import { HistorialComponent } from "./user/historial-citas/historial";
 import { EspecialistaPage } from "./user/ver-especialistas/ver-especialista/especialista";
-import { CitasComponent } from "./user/citas/Citas";
+import { CitasComponent } from "./user/citas/citas";
 
 function App() {
   return (
