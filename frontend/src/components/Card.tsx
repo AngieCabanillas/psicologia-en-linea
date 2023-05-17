@@ -4,12 +4,12 @@ import './Card.css'
 export function CardComponent(props){
 
     return(
-        <div className="contenedor-card p-10 max-w-xl flex items-center mb-10">
-            <div className="contenedor-img">
+        <div className="contenedor-card p-10 max-w-xl flex justify-center flex-col md:flex-row items-center mb-10">
+            <div className="contenedor-img mb-12 md:mb-0 md:mr-12">
                 <img className="imagen" src="/img/user.png" alt="foto de usuario" />
             </div>
             <div className="info text-justify">
-                <div className="nombres mb-5">
+                <div className="nombres mb-5 text-center md:text-start">
                     {props.nombres}
                 </div>
                 <div className="detalles mb-5">

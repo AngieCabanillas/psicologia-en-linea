@@ -36,38 +36,38 @@ export const EspecialistaPage = () => {
     return (
         <Spin spinning={loading} className="h-100" indicator={circleIcon}>
             <DatosEspecialistaPage {...especialista} />
-            <section className='content p-5 -mb-32 sm:p-20' style={{ backgroundColor: '#EDF0F7' }}>
+            <section className='content p-16 sm:p-20 -mb-32 sm:p-20' style={{ backgroundColor: '#EDF0F7' }}>
                 <DetallesEspecialistaPage {...especialista} />
-                <div className="contenido grid grid-cols-4 p-10">
+                <div className="contenido grid grid-cols-1 md:grid-cols-4  sm:p-10">
                     <div className="horarios__contenedor col-span-3">
                         <div className="horarios__title mb-12">
                             Horarios de Atención
                         </div>
-                        <div className="horario mr-10 p-10 mb-10">
+                        <div className="horario sm:mr-10 p-10 mb-10">
                             <div className="horario__title mb-6">
                                 Lunes
                             </div>
-                            <div className="horarios__contenedor grid grid-cols-3 gap-3">
+                            <div className="horarios__contenedor grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                                 {especialista.horarios.lunes ? especialista.horarios.lunes.map((hora, index) => (
                                     <HorarioComponent key={index} hora={hora} />
                                 )) : "No hay horarios para este día."}
                             </div>
                         </div>
-                        <div className="horario mr-10 p-10 mb-10">
+                        <div className="horario sm:mr-10 p-10 mb-10">
                             <div className="horario__title mb-6">
                                 Martes
                             </div>
-                            <div className="horarios__contenedor grid grid-cols-3 gap-3">
+                            <div className="horarios__contenedor grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                                 {especialista.horarios.martes ? especialista.horarios.martes.map((hora, index) => (
                                     <HorarioComponent key={index} hora={hora} />
                                 )) : "No hay horarios para este día."}
                             </div>
                         </div>
-                        <div className="horario mr-10 p-10 mb-10">
+                        <div className="horario sm:mr-10 p-10 mb-10">
                             <div className="horario__title mb-6">
                                 Miércoles
                             </div>
-                            <div className="horarios__contenedor grid grid-cols-3 gap-3">
+                            <div className="horarios__contenedor grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                                 {especialista.horarios.miercoles ? especialista.horarios.miercoles.map((hora, index) => (
                                     <HorarioComponent key={index} hora={hora} />
                                 )) : "No hay horarios para este día."}

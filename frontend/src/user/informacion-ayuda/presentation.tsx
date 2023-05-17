@@ -2,7 +2,7 @@ import './presentation.css'
 
 export const PresentationInformationPage = () => {
     return (
-        <section className='presentation p-20 flex items-center justify-center' style={{height: 'calc(100vh - 100px)'}}>
+        <section className='presentation p-20 flex items-center justify-center'>
             <div className='content text-center'>
                 <div className='max-w-lg relative'>
                     <div className="title relative z-10">

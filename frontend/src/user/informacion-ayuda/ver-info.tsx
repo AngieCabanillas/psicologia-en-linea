@@ -27,7 +27,7 @@ export const InfoAyudaPag = () => {
         <>
             <Spin spinning={loading} className="h-100" indicator={circleIcon}>
                 <PresentationInformationPage />
-                <section className='content p-20 -mb-32' style={{ backgroundColor: '#EDF0F7' }}>
+                <section className='content p-10 sm:p-20 -mb-32' style={{ backgroundColor: '#EDF0F7' }}>
                     <div className='content w-full'>
                         <Tabs
                             defaultActiveKey='1'
