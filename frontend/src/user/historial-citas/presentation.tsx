@@ -3,10 +3,10 @@ import './presentation.css'
 
 export const HistorialPresentationComponent = () =>{
     return (
-        <section className='presentation p-20 flex flex-col md:flex-row items-center justify-center' style={{height: 'calc(100vh - 100px)'}}>
+        <section className='presentation p-20 flex flex-col md:flex-row items-center justify-center'>
           <div className='content flex items-center justify-center text-center w-full'>
             <div className='max-w-lg relative'>
-              <div className="title relative z-10">
+              <div className="title -md:text-lg relative z-10">
                 Historial de Citas
               </div>
               <div className='subrayado absolute rounded w-full top-8 h-8 z-0 inset-0 mx-auto' />
