@@ -10,6 +10,11 @@ export const MenuItems = [
     cName: "nav-links",
   },
   {
+    title: "Mi Horario",
+    url: "/my-horario",
+    cName: "nav-links",
+  },
+  {
     title: "Especialistas",
     url: "/especialistas",
     cName: "nav-links",

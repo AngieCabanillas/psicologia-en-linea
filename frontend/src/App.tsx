@@ -11,6 +11,7 @@ import { InfoAyudaPag } from "./user/informacion-ayuda/ver-info";
 import { HistorialComponent } from "./user/historial-citas/historial";
 import { EspecialistaPage } from "./user/ver-especialistas/ver-especialista/especialista";
 import { CitasComponent } from "./user/citas/citas";
+import { MyHorarioComponent } from "./user/my-horario/my-horario";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/info-ayuda" element={<Navbar />} />
         <Route path="/historial" element={<Navbar />} />
         <Route path="/citas" element={<Navbar />} />
+        <Route path="/my-horario" element={<Navbar />} />
       </Routes>
 
       <Routes>
@@ -36,6 +38,7 @@ function App() {
         <Route path="/info-ayuda" element={<InfoAyudaPag />} />
         <Route path="/historial" element={<HistorialComponent />} />
         <Route path="/citas" element={<CitasComponent />} />
+        <Route path="/my-horario" element={<MyHorarioComponent />} />
       </Routes>
 
       <Routes>
@@ -45,6 +48,7 @@ function App() {
         <Route path="/info-ayuda" element={<Footer />} />
         <Route path="/historial" element={<Footer />} />
         <Route path="/citas" element={<Footer />} />
+        <Route path="/my-horario" element={<Footer />} />
       </Routes>
     </>
   );
