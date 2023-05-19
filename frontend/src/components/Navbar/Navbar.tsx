@@ -1,23 +1,21 @@
 import { MenuItems } from "./MenuItem";
-import './Navbar.css'
-import  logo from '/img/LogoAzul.png' 
+import "./Navbar.css";
+import logo from "/img/LogoAzul.png";
 import { Button } from "../Button";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import { BarsOutlined } from '@ant-design/icons'
-
-
+import { BarsOutlined } from "@ant-design/icons";
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  
+
   function toggleMenu() {
     setIsDropdownOpen(!isDropdownOpen);
   }
 
   return (
     <nav className="flex flex-row w-full justify-between items-center">
-      <img src={logo}  alt="" className="logo-nav hidden md:block"/>
+      <img src={logo} alt="" className="logo-nav hidden md:block" />
 
       {isDropdownOpen && (
         <div className="dropdown-content absolute top-full left-0 w-full ">
@@ -52,15 +50,11 @@ export default function Navbar() {
           <Button buttonStyle="btn-primary">Información de Ayuda</Button>
         </NavLink>
       </div>
-      <button
-        className="md:hidden relative text-3xl"
-        onClick={toggleMenu}
-      >
+      <button className="md:hidden relative text-3xl" onClick={toggleMenu}>
         <BarsOutlined />
       </button>
-    </nav>        
-  )
-
+    </nav>
+  );
 }
 
 // interface MenuItem {
@@ -80,7 +74,5 @@ export default function Navbar() {
 //           </NavLink>
 //         </li>
 //       )
-   
 
 // }
-  

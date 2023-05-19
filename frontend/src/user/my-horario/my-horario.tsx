@@ -1,7 +1,7 @@
 import "./my-horario.css";
 import { useEffect, useState } from "react";
 import { LoadingOutlined } from "@ant-design/icons";
-import { Button, Modal, Spin } from "antd";
+import { Spin } from "antd";
 import MyHorarioCalendar from "./my-horario-calendar/my-horario-calendar";
 import { ModalDeleteHorario } from "./modals/modal-delete-horario/modal-delete-horario";
 import { ModalHorario } from "./modals/modal-horario/modal-horario";

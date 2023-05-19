@@ -15,6 +15,11 @@ export const MenuItems = [
     cName: "nav-links",
   },
   {
+    title: "Solcitudes",
+    url: "/solicitudes",
+    cName: "nav-links",
+  },
+  {
     title: "Especialistas",
     url: "/especialistas",
     cName: "nav-links",
