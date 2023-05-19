@@ -1,18 +1,19 @@
 import  logo from '/svg/logo.svg' 
 import "./Login.css"
+import { Link } from 'react-router-dom'
 
 
 
-function redirectTo(url: string): void {
-    window.location.href = url;
-  }
+// function redirectTo(url: string): void {
+//     window.location.href = url;
+//   }
   
 
 export default function LoginUsuario () { 
 
-    const handleClick = () => {
-        redirectTo("/home");
-      };
+    // const handleClick = () => {
+    //     redirectTo("/home");
+    //   };
 
     return (
         
@@ -31,14 +32,18 @@ export default function LoginUsuario () {
                                 <input type='password' placeholder='Ingresa tu contraseña' required/>
                             </div>
                             <div className='input-field button'>
-                                <input type='button' value="Iniciar Sesión" onClick={handleClick} />
+                                <Link to="/home">
+                                    <input type='button' value="Iniciar Sesión"/>
+                                </Link>
                             </div>
                         </form>
                         <div className='login-signup'>
                             <span className='text'>¿No estas registrado?
                             
                             </span>
-                            <a href='/registro' className='text signup-text'>Clickea aquí.</a>
+                            <Link to="/registro">
+                                <a  className='text signup-text'>Clickea aquí.</a>
+                            </Link>
                         </div>
                     </div>
                 </div>

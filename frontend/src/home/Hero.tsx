@@ -3,13 +3,13 @@ import heroImg from "/img/fondo-hero.jpg"
 import "./Hero.css"
 import { Link } from "react-router-dom";
 
-const handleClick1 = () => {
-    redirectTo("/especialistas");
-  };
+// const handleClick1 = () => {
+//     redirectTo("/especialistas");
+//   };
 
-const handleClick2 = () => {
-    redirectTo("/info-ayuda");
-  };
+// const handleClick2 = () => {
+//     redirectTo("/info-ayuda");
+//   };
 
 export default function Hero () { 
 
@@ -23,12 +23,12 @@ export default function Hero () {
                 <h1>El apoyo que necesitas</h1>
                 <p>Conecta con nuestros especialistas y déjanos acompañarte a mejorar tu bienestar emocional.</p>
                 <div className="button-group flex">
-                <Link to="/info-ayuda/">
-                        <Button buttonStyle="btn-primary" onClick={handleClick2}>Información de Ayuda</Button>
+                    <Link to="/info-ayuda/">
+                        <Button buttonStyle="btn-primary">Información de Ayuda</Button>
                     </Link>
                     <div className="espacio-entre-componentes"></div>
                     <Link to="/especialistas/">
-                        <Button buttonStyle="btn-outline" onClick={handleClick1}>Especialistas</Button>
+                        <Button buttonStyle="btn-outline">Especialistas</Button>
                     </Link>
                 </div>
             </div>
@@ -37,7 +37,7 @@ export default function Hero () {
     )
 
 }
-function redirectTo(arg0: string) {
-    throw new Error("Function not implemented.");
-}
+// function redirectTo(arg0: string) {
+//     throw new Error("Function not implemented.");
+// }
 

@@ -52,7 +52,7 @@ export default function Navbar() {
         })}
       </ul>
       <div className="button-group flex mr-4 md:mr-0">
-        <NavLink to="/cerrar-sesion">
+        <NavLink to="/">
           <Button buttonStyle="btn-outline">Cerrar Sesión</Button>
         </NavLink>
         <div className="espacio-entre-componentes mr-2 md:mr-6"></div>
