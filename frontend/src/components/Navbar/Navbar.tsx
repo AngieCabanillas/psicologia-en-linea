@@ -6,6 +6,10 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { BarsOutlined } from "@ant-design/icons";
 
+//PACIENTE
+//ESPECIALISTA
+const userType = "PACIENTE";
+
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -20,25 +24,31 @@ export default function Navbar() {
       {isDropdownOpen && (
         <div className="dropdown-content absolute top-full left-0 w-full ">
           <ul className="dropdown-menu leading-10 list-none">
-            {MenuItems.map((item, index) => (
-              <li key={index}>
-                <NavLink className={item.cName} to={item.url}>
-                  {item.title}
-                </NavLink>
-              </li>
-            ))}
+            {MenuItems.map((item, index) => {
+              if (userType === item.userType || !item.userType) {
+                return (
+                  <li key={index}>
+                    <NavLink className={item.cName} to={item.url}>
+                      {item.title}
+                    </NavLink>
+                  </li>
+                );
+              }
+            })}
           </ul>
         </div>
       )}
       <ul className="nav-menu hidden md:flex grid gap-3 text-center items-center justify-end mr-3">
         {MenuItems.map((item, index) => {
-          return (
-            <li key={index}>
-              <NavLink className={item.cName} to={item.url}>
-                {item.title}
-              </NavLink>
-            </li>
-          );
+          if (userType === item.userType || !item.userType) {
+            return (
+              <li key={index}>
+                <NavLink className={item.cName} to={item.url}>
+                  {item.title}
+                </NavLink>
+              </li>
+            );
+          }
         })}
       </ul>
       <div className="button-group flex mr-4 md:mr-0">
