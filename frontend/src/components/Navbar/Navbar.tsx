@@ -2,16 +2,23 @@ import { MenuItems } from "./MenuItem";
 import "./Navbar.css";
 import logo from "/img/LogoAzul.png";
 import { Button } from "../Button";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { BarsOutlined } from "@ant-design/icons";
 
 //PACIENTE
 //ESPECIALISTA
-const userType = "PACIENTE";
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const location = useLocation();
+  const path = location.pathname;
+  let userType = 'PACIENTE';
+
+  if (path === '/citas' || path === '/my-horario' || path ===  '/solicitudes') {
+    userType = 'ESPECIALISTA';
+  }
 
   function toggleMenu() {
     setIsDropdownOpen(!isDropdownOpen);

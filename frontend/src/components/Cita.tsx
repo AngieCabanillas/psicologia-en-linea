@@ -39,7 +39,7 @@ export function CitaComponent(props){
                         <Tooltip title="Eliminar">
                             <Popconfirm
                                 key={1}
-                                title="¿Está seguro de eliminar este usuario?"
+                                title="¿Está seguro de cancelar esta cita?"
                                 onConfirm={() => props.handleDelete(cita.id)}
                                 onCancel={() => console.log("cancel")}
                                 okText="Sí"

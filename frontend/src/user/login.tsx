@@ -1,4 +1,4 @@
-import  logo from '/svg/logo.svg' 
+import  logo from '/img/LogoBlanco.png' 
 import "./Login.css"
 import { Link } from 'react-router-dom'
 
@@ -7,13 +7,11 @@ import { Link } from 'react-router-dom'
 // function redirectTo(url: string): void {
 //     window.location.href = url;
 //   }
-  
+
 
 export default function LoginUsuario () { 
+    
 
-    // const handleClick = () => {
-    //     redirectTo("/home");
-    //   };
 
     return (
         
@@ -38,11 +36,14 @@ export default function LoginUsuario () {
                             </div>
                         </form>
                         <div className='login-signup'>
-                            <span className='text'>¿No estas registrado?
-                            
-                            </span>
+                            <span className='text'>¿No estas registrado?</span>
                             <Link to="/registro">
                                 <a  className='text signup-text'>Clickea aquí.</a>
+                            </Link>
+                        </div>
+                        <div className='text-center'>
+                            <Link to="/citas">
+                                <a  className='text font-semibold text-stone-400 signup-text'>Ingresa como especialista.</a>
                             </Link>
                         </div>
                     </div>

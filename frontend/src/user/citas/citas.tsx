@@ -18,11 +18,11 @@ const listaCitas = [
     date: "20/10/2020",
   },
   {
-    name: "Buru Lizarzaburu",
+    name: "Carlos Lizarzaburu",
     date: "20/10/2020",
   },
   {
-    name: "Camila Vallejos",
+    name: "Camila Rivera",
     date: "20/10/2020",
   },
 ];

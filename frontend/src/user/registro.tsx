@@ -1,4 +1,4 @@
-import logo from '/svg/logo.svg'
+import  logo from '/img/LogoBlanco.png' 
 import "./Registro.css"
 import { Link } from 'react-router-dom'
 
