@@ -1,22 +1,27 @@
 import logo from "/img/LogoBlanco.png";
 import "./Login.css";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { Controller, useForm } from "react-hook-form";
 import { LoginResolver } from "./login.yup";
 import { useQuery } from "react-query";
-
-// function redirectTo(url: string): void {
-//     window.location.href = url;
-//   }
+import { getUserByEmailAndPassword } from "../shared/services/user.service";
+import { useSerenityContext } from "../shared/contexts/SerenityProvider";
 
 export default function LoginUsuario() {
+  const navigate = useNavigate();
+
+  const {
+    user: { getUser, setUser },
+  } = useSerenityContext();
+
   const {
     handleSubmit,
     control,
-    getValues,
-    setValue,
     formState: { errors },
-  } = useForm<{ email: string; password: string }>({
+  } = useForm<{
+    email: string;
+    password: string;
+  }>({
     resolver: LoginResolver,
     mode: "all",
     defaultValues: {
@@ -25,21 +30,26 @@ export default function LoginUsuario() {
     },
   });
 
-  const {} = useQuery(
+  const { refetch } = useQuery(
     "query-login",
     async () => {
-      return await getChart(user.id);
+      return await getUserByEmailAndPassword(
+        getUser()?.email ?? "",
+        getUser()?.password ?? ""
+      );
     },
     {
+      enabled: false,
       onSuccess: ({ data }) => {
-        setData(data);
+        setUser(data[0]);
+        navigate("/home");
       },
     }
   );
 
   const onLogin = () => {
     handleSubmit(() => {
-      loginQuery();
+      refetch();
     })();
   };
 
@@ -50,29 +60,42 @@ export default function LoginUsuario() {
           <div className="form-login">
             <img src={logo} alt="" className="logo" />
 
-            <form action="#">
-              <div className="input-field">
-                <label>Usuario:</label>
-                <input type="text" placeholder="Ingresa tu correo" required />
-              </div>
-              <div className="input-field">
-                <label>Contraseña:</label>
-                <input
-                  type="password"
-                  placeholder="Ingresa tu contraseña"
-                  required
-                />
-              </div>
-              <div className="input-field button">
-                <Link to="/home">
+            <div className="input-field">
+              <label>Usuario:</label>
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => (
                   <input
-                    type="button"
-                    onClick={onLogin}
-                    value="Iniciar Sesión"
+                    value={field.value}
+                    onChange={field.onChange}
+                    type="text"
+                    placeholder="Ingresa tu correo"
+                    required
                   />
-                </Link>
-              </div>
-            </form>
+                )}
+              />
+            </div>
+            <div className="input-field">
+              <label>Contraseña:</label>
+              <Controller
+                name="password"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    value={field.value}
+                    onChange={field.onChange}
+                    type="text"
+                    placeholder="Ingresa tu contraseña"
+                    required
+                  />
+                )}
+              />
+            </div>
+
+            <div className="input-field button">
+              <input type="button" onClick={onLogin} value="Iniciar Sesión" />
+            </div>
 
             <div className="login-signup">
               <span className="text">¿No estas registrado?</span>
@@ -87,6 +110,11 @@ export default function LoginUsuario() {
                   Ingresa como especialista.
                 </a>
               </Link>
+            </div>
+
+            <div className="errors-message">
+              <div>{errors.email ? "Corregir el email" : ""}</div>
+              <div>{errors.password ? "Corregir la contraseña" : ""}</div>
             </div>
           </div>
         </div>
