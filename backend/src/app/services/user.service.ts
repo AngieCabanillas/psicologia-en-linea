@@ -21,6 +21,20 @@ class UserService {
     return user;
   }
 
+  async findByEmailAndPassword(email: string, password: string) {
+    const user = await models.USER.findOne({
+      where: {
+        email,
+        password,
+      },
+    });
+
+    if (!user) {
+      throw boom.notFound("Usuario no encontrado");
+    }
+    return user;
+  }
+
   async create(data: UserType) {
     const newUser = await models.USER.create(data);
     return newUser;

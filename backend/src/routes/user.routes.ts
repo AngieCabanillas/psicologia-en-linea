@@ -3,7 +3,12 @@ import validatorHandler from "../middlewares/validator.handler";
 import userSchema from "../app/schemas/user.schema";
 import UserService from "../app/services/user.service";
 
-const { getUserSchema, createUserSchema, updateUserSchema } = userSchema;
+const {
+  getUserSchema,
+  getUserByEmailAndPassword,
+  createUserSchema,
+  updateUserSchema,
+} = userSchema;
 const router = express.Router();
 const service = new UserService();
 
@@ -15,6 +20,20 @@ router.get("/", async (req, res, next) => {
     next(error);
   }
 });
+
+router.get(
+  "/:email/:password",
+  validatorHandler(getUserByEmailAndPassword, "params"),
+  async (req, res, next) => {
+    try {
+      const { email, password } = req.params;
+      const user = await service.findByEmailAndPassword(email, password);
+      res.json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 router.get(
   "/:id",

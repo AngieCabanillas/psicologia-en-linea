@@ -29,8 +29,17 @@ const getUserSchema = Joi.object<{ id: number }, true>({
   id: id.required(),
 });
 
+const getUserByEmailAndPassword = Joi.object<
+  { email: string; password: string },
+  true
+>({
+  email: email.required(),
+  password: password.required(),
+});
+
 export default {
   createUserSchema,
   updateUserSchema,
   getUserSchema,
+  getUserByEmailAndPassword,
 };
