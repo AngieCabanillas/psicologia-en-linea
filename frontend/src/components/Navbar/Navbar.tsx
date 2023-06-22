@@ -5,20 +5,26 @@ import { Button } from "../Button";
 import { NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { BarsOutlined } from "@ant-design/icons";
+import { useSerenityContext } from "../../shared/contexts/SerenityProvider";
 
 //PACIENTE
 //ESPECIALISTA
 
 export default function Navbar() {
+  const { clearAll } = useSerenityContext();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const location = useLocation();
   const path = location.pathname;
-  let userType = 'PACIENTE';
+  let userType = "PACIENTE";
 
-  if (path === '/citas' || path === '/my-horario' || path ===  '/solicitudes') {
-    userType = 'ESPECIALISTA';
+  if (path === "/citas" || path === "/my-horario" || path === "/solicitudes") {
+    userType = "ESPECIALISTA";
   }
+
+  const cerrarSesion = () => {
+    clearAll();
+  };
 
   function toggleMenu() {
     setIsDropdownOpen(!isDropdownOpen);
@@ -59,9 +65,9 @@ export default function Navbar() {
         })}
       </ul>
       <div className="button-group flex mr-4 md:mr-0">
-        <NavLink to="/">
-          <Button buttonStyle="btn-outline">Cerrar Sesión</Button>
-        </NavLink>
+        <Button onClick={cerrarSesion} buttonStyle="btn-outline">
+          Cerrar Sesión
+        </Button>
         <div className="espacio-entre-componentes mr-2 md:mr-6"></div>
         <NavLink to="/info-ayuda">
           <Button buttonStyle="btn-primary">Información de Ayuda</Button>
