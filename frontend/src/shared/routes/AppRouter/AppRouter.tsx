@@ -14,23 +14,37 @@ import { CitasComponent } from "../../../user/citas/citas";
 import { MyHorarioComponent } from "../../../user/my-horario/my-horario";
 import { SolicitudesComponent } from "../../../user/solicitudes/solicitudes";
 import RegistroUsuario from "../../../user/registro";
+import Page from "../../../page/page";
+import LoginClient from "../../../client/login";
+import RegistroClient from "../../../client/registro";
+import { EspecialistaPage } from "../../../client/ver-especialistas/ver-especialista/especialista";
+import { EspecialistasPag } from "../../../client/ver-especialistas/ver-especialistas";
+import { HistorialComponent } from "../../../client/historial-citas/historial";
 
 const AppRouter = () => {
   return (
     <AppSwitch>
-      {/* <Route path={paths.app.login} element={<LoginUsuario />} /> */}
+      <Route path={paths.root} element={<Page />} />
       <Route path={paths.general.notFound} element={<NotFound />} />
 
       {/* CLIENT */}
-      {/* <Route element={<GuestRoute pathname={paths.app.root} />}>
-        <Route path={paths.dash.login} element={<DashLogin />} />
+      <Route element={<GuestRouteUser pathname={paths.client.home} />}>
+        <Route path={paths.client.login} element={<LoginClient />} />
+        <Route path={paths.client.registro} element={<RegistroClient />} />
       </Route>
-      <Route element={<ProtectedRoutes pathname={paths.dash.login} />}>
-        <Route path={paths.dash.root} element={<DashHome />} />
-        <Route path={paths.dash.clientes} element={<DashboardCustomers />} />
-        <Route path={paths.dash.gestiones} element={<div>gestiones</div>} />
-        <Route path={paths.dash.reportes} element={<div>reportes</div>} />
-      </Route> */}
+      <Route element={<ProtectedRoutesUser pathname={paths.client.login} />}>
+        <Route path={paths.client.home} element={<Home />} />
+        <Route path={paths.client.infoAyuda} element={<InfoAyudaPag />} />
+        <Route
+          path={paths.client.especialistas}
+          element={<EspecialistasPag />}
+        />
+        <Route
+          path={paths.client.especialistasVerEspecialista}
+          element={<EspecialistaPage />}
+        />
+        <Route path={paths.client.historial} element={<HistorialComponent />} />
+      </Route>
 
       {/* USER */}
       <Route element={<GuestRouteUser pathname={paths.user.home} />}>

@@ -13,6 +13,13 @@ export const getClientByID = async (id: number) => {
   return await axiosClient.get(`${url}/${id}`);
 };
 
+export const getClientByEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
+  return await axiosClient.get(`${url}/${email}/${password}`);
+};
+
 export const createClient = async (user: Omit<ClientType, "id">) => {
   return await axiosClient.post(url, user);
 };

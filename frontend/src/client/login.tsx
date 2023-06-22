@@ -4,10 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 import { LoginResolver } from "./login.yup";
 import { useQuery } from "react-query";
-import { getUserByEmailAndPassword } from "../shared/services/user.service";
 import { useSerenityContext } from "../shared/contexts/SerenityProvider";
+import { getClientByEmailAndPassword } from "../shared/services/client.service";
 
-export default function LoginUsuario() {
+export default function LoginClient() {
   const navigate = useNavigate();
 
   const {
@@ -34,7 +34,7 @@ export default function LoginUsuario() {
   const { refetch } = useQuery(
     "query-login",
     async () => {
-      return await getUserByEmailAndPassword(
+      return await getClientByEmailAndPassword(
         getValues().email,
         getValues().password
       );
@@ -100,7 +100,7 @@ export default function LoginUsuario() {
 
             <div className="login-signup">
               <span className="text">¿No estas registrado?</span>
-              <Link to="/registro-user">
+              <Link to="/registro-client">
                 <a className="text signup-text">Clickea aquí.</a>
               </Link>
             </div>

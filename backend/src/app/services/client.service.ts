@@ -21,6 +21,20 @@ class ClientService {
     return client;
   }
 
+  async findByEmailAndPassword(email: string, password: string) {
+    const client = await models.CLIENT.findOne({
+      where: {
+        email,
+        password,
+      },
+    });
+
+    if (!client) {
+      throw boom.notFound("Usuario no encontrado");
+    }
+    return client;
+  }
+
   async create(data: ClientType) {
     const newClient = await models.CLIENT.create(data);
     return newClient;

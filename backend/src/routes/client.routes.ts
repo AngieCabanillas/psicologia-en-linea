@@ -3,8 +3,12 @@ import validatorHandler from "../middlewares/validator.handler";
 import clientSchema from "../app/schemas/client.schema";
 import ClientService from "../app/services/client.service";
 
-const { getClientSchema, createClientSchema, updateClientSchema } =
-  clientSchema;
+const {
+  getClientSchema,
+  createClientSchema,
+  updateClientSchema,
+  getClientByEmailAndPassword,
+} = clientSchema;
 const router = express.Router();
 const service = new ClientService();
 
@@ -16,6 +20,20 @@ router.get("/", async (req, res, next) => {
     next(error);
   }
 });
+
+router.get(
+  "/:email/:password",
+  validatorHandler(getClientByEmailAndPassword, "params"),
+  async (req, res, next) => {
+    try {
+      const { email, password } = req.params;
+      const client = await service.findByEmailAndPassword(email, password);
+      res.json(client);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 router.get(
   "/:id",

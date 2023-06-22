@@ -17,7 +17,7 @@ export default {
   client: {
     login: "/login-client",
     home: "/home",
-    registro: "/registro-user",
+    registro: "/registro-client",
     especialistas: "/especialistas",
     especialistasVerEspecialista: "/especialistas/ver-especialista",
     infoAyuda: "/info-ayuda",
