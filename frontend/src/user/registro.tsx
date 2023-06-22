@@ -1,8 +1,26 @@
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "/img/LogoBlanco.png";
 import "./Registro.css";
-import { Link } from "react-router-dom";
+import { RegistroResolver } from "./registro.yup";
+import { UserType } from "../shared/types/user.type";
 
 export default function RegistroUsuario() {
+  const navigate = useNavigate();
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<Omit<UserType, "id">>({
+    resolver: RegistroResolver,
+    mode: "all",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
   return (
     <div className="container">
       <div className="container-forms">
@@ -26,8 +44,16 @@ export default function RegistroUsuario() {
             <img src={logo} alt="" className="logo-register block md:hidden" />
             <form action="#">
               <div className="input-field">
-                <label>Usuario:</label>
-                <input type="text" placeholder="Ingresa tu correo" required />
+                <label>Nombre:</label>
+                <input type="text" placeholder="Ingresa tu nombre" required />
+              </div>
+              <div className="input-field">
+                <label>Apellidos:</label>
+                <input
+                  type="text"
+                  placeholder="Ingresa tus apellidos"
+                  required
+                />
               </div>
               <div className="input-field">
                 <label>Correo:</label>
@@ -40,10 +66,6 @@ export default function RegistroUsuario() {
                   placeholder="Ingresa tu contraseña"
                   required
                 />
-              </div>
-              <div className="input-field" id="date">
-                <label>Fecha de Nacimiento:</label>
-                <input type="date" required />
               </div>
               <div id="type">
                 <label>Registrarse como:</label>
