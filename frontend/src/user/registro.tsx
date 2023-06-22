@@ -1,25 +1,45 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "/img/LogoBlanco.png";
 import "./Registro.css";
 import { RegistroResolver } from "./registro.yup";
 import { UserType } from "../shared/types/user.type";
+import { useQuery } from "react-query";
+import { createUser } from "../shared/services/user.service";
 
 export default function RegistroUsuario() {
   const navigate = useNavigate();
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<Omit<UserType, "id">>({
+  const { handleSubmit, control, getValues } = useForm<Omit<UserType, "id">>({
     resolver: RegistroResolver,
     mode: "all",
     defaultValues: {
+      name: "",
+      lastName: "",
+      rol: "",
       email: "",
       password: "",
     },
   });
+
+  const { refetch } = useQuery(
+    "query-login",
+    async () => {
+      return await createUser(getValues());
+    },
+    {
+      enabled: false,
+      onSuccess: () => {
+        navigate("/login-user");
+      },
+    }
+  );
+
+  const iniciarSesion = () => {
+    handleSubmit(() => {
+      refetch();
+    })();
+  };
 
   return (
     <div className="container">
@@ -33,7 +53,7 @@ export default function RegistroUsuario() {
             </p>
             <div className="login-signup flex">
               <span className="text">¿Ya estas registrado?</span>
-              <Link to="/">
+              <Link to="/login-user">
                 <a href="/" className="text signup-text">
                   Clickea aquí.
                 </a>
@@ -42,51 +62,109 @@ export default function RegistroUsuario() {
           </div>
           <div className="registro-form fit-content">
             <img src={logo} alt="" className="logo-register block md:hidden" />
-            <form action="#">
-              <div className="input-field">
-                <label>Nombre:</label>
-                <input type="text" placeholder="Ingresa tu nombre" required />
-              </div>
-              <div className="input-field">
-                <label>Apellidos:</label>
-                <input
-                  type="text"
-                  placeholder="Ingresa tus apellidos"
-                  required
-                />
-              </div>
-              <div className="input-field">
-                <label>Correo:</label>
-                <input type="email" placeholder="Ingresa tu correo" required />
-              </div>
-              <div className="input-field">
-                <label>Contraseña:</label>
-                <input
-                  type="password"
-                  placeholder="Ingresa tu contraseña"
-                  required
-                />
-              </div>
-              <div id="type">
-                <label>Registrarse como:</label>
-                <input type="radio" value="Paciente" /> Paciente
-                <input type="radio" value="Especialista" /> Especialista
-              </div>
-              <div className="login-signup flex md:hidden">
-                <span className="text">¿Ya estas registrado?</span>
-                <Link to="/">
-                  <a href="/" className="text signup-text">
-                    Clickea aquí.
-                  </a>
-                </Link>
-              </div>
+            <div className="input-field">
+              <label>Nombre:</label>
+              <Controller
+                name="name"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    value={field.value}
+                    onChange={field.onChange}
+                    type="text"
+                    placeholder="Ingresa tu nombre"
+                    required
+                  />
+                )}
+              />
+            </div>
 
-              <div className="input-field button">
-                <Link to="/home">
-                  <input type="button" value="Iniciar Sesión" />
-                </Link>
-              </div>
-            </form>
+            <div className="input-field">
+              <label>Apellidos:</label>
+              <Controller
+                name="lastName"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    value={field.value}
+                    onChange={field.onChange}
+                    type="text"
+                    placeholder="Ingresa tus apellidos"
+                    required
+                  />
+                )}
+              />
+            </div>
+
+            <div className="input-field">
+              <label>Correo:</label>
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    value={field.value}
+                    onChange={field.onChange}
+                    type="text"
+                    placeholder="Ingresa tu correo"
+                    required
+                  />
+                )}
+              />
+            </div>
+
+            <div className="input-field">
+              <label>Contraseña:</label>
+              <Controller
+                name="password"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    value={field.value}
+                    onChange={field.onChange}
+                    type="text"
+                    placeholder="Ingresa tu contraseña"
+                    required
+                  />
+                )}
+              />
+            </div>
+
+            <div id="type" className="input-radio">
+              <label>Registrarse como:</label>
+              <Controller
+                name="rol"
+                control={control}
+                render={({ field }) => (
+                  <>
+                    <input
+                      type="radio"
+                      checked={field.value === "PSICOLOGO"}
+                      onChange={field.onChange}
+                      name="userType"
+                      value="PSICOLOGO"
+                    />{" "}
+                    Psicologo
+                    <input
+                      type="radio"
+                      checked={field.value === "PSIQUIATRA"}
+                      onChange={field.onChange}
+                      name="userType"
+                      value="PSIQUIATRA"
+                    />
+                    Psiquiatra
+                  </>
+                )}
+              />
+            </div>
+
+            <div className="input-field button">
+              <input
+                type="button"
+                onClick={iniciarSesion}
+                value="Iniciar Sesión"
+              />
+            </div>
           </div>
         </div>
       </div>

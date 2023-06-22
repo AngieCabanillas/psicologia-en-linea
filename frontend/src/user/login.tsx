@@ -11,12 +11,13 @@ export default function LoginUsuario() {
   const navigate = useNavigate();
 
   const {
-    user: { getUser, setUser },
+    user: { setUser },
   } = useSerenityContext();
 
   const {
     handleSubmit,
     control,
+    getValues,
     formState: { errors },
   } = useForm<{
     email: string;
@@ -34,14 +35,14 @@ export default function LoginUsuario() {
     "query-login",
     async () => {
       return await getUserByEmailAndPassword(
-        getUser()?.email ?? "",
-        getUser()?.password ?? ""
+        getValues().email,
+        getValues().password
       );
     },
     {
       enabled: false,
       onSuccess: ({ data }) => {
-        setUser(data[0]);
+        setUser(data);
         navigate("/home");
       },
     }
@@ -99,7 +100,7 @@ export default function LoginUsuario() {
 
             <div className="login-signup">
               <span className="text">¿No estas registrado?</span>
-              <Link to="/registro">
+              <Link to="/registro-user">
                 <a className="text signup-text">Clickea aquí.</a>
               </Link>
             </div>
