@@ -30,7 +30,11 @@ export const getReserveByClient = async (
 ) => {
   return await axiosClient.get(`${url}/client/${id}`);
 };
-
+export const getReserveByUser = async (
+  id: number
+) => {
+  return await axiosClient.get(`${url}/user/${id}`);
+};
 export const editStateReserve = async (
   reserve: { state: string },
   id: number

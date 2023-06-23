@@ -61,6 +61,19 @@ class ReserveService {
   
     return reserves;
   }
+  async findByUser(userId: string) {
+    const reserves = await models.RESERVE.findAll({
+      where: {
+        userId: userId
+      }
+    });
+  
+    if (reserves.length === 0) {
+      throw boom.notFound("No se encontraron reservas para el ID de usario proporcionado");
+    }
+  
+    return reserves;
+  }
 }
 
 

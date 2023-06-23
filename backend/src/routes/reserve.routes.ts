@@ -79,7 +79,19 @@ router.get(
     }
   }
 );
-
+router.get(
+  "/user/:id",
+  validatorHandler(getReserveSchema, "params"),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const reserves = await service.findByUser(id);
+      res.json(reserves);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 //MODALITY: MORNING, AFTERNOON, NIGHT
 //STATE: INIT, ACCEPTED, DONE
 router.put(
