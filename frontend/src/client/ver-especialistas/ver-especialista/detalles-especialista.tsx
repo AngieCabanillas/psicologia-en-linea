@@ -9,13 +9,16 @@ export function DetallesEspecialistaPage(props){
             </div>
             <div className="content__paragraphs flex flex-col md:flex-row gap-10 text-justify">
                 <div className="content__paragraph content__paragraph--first flex-1">
-                    {props.descripcionCarrera1}
+                    Titulo:  <br />
+                    {props.title}
                 </div>
                 <div className="content__paragraph content__paragraph--content__second flex-1">
-                    {props.descripcionCarrera2}
+                    Institución: <br />
+                    {props.institution}
                 </div>
                 <div className="content__paragraph content__paragraph--content__third flex-1">
-                    {props.descripcionCarrera3}
+                    E-mail: <br />
+                    {props.email}
                 </div>
             </div>
         </div>

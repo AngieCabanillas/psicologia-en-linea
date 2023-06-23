@@ -31,6 +31,21 @@ router.get(
   }
 );
 
+router.get(
+  "/user/:userId",
+  validatorHandler(getScheduleSchema, "params"),
+  async (req, res, next) => {
+    try {
+      const { userId } = req.params;
+      const schedule = await service.findOneByIdUser(userId);
+      res.json(schedule);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+
 router.post(
   "/",
   validatorHandler(createScheduleSchema, "body"),

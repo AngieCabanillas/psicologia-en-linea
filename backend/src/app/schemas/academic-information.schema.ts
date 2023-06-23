@@ -29,9 +29,10 @@ const updateAcademicInformationSchema = Joi.object<
   date: date.required(),
 });
 
-const getAcademicInformationSchema = Joi.object<{ id: number }, true>({
-  id: id.required(),
-});
+const getAcademicInformationSchema = Joi.object({
+  id: Joi.number(),
+  userId: Joi.number(),
+}).or("id", "userId").required();
 
 export default {
   createAcademicInformationSchema,

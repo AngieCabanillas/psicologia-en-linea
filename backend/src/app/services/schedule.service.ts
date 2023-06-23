@@ -21,6 +21,19 @@ class ScheduleService {
     return schedule;
   }
 
+  async findOneByIdUser(userId: string){
+    const schedule = await models.SCHEDULE.findOne({
+      where: {
+        userId: userId,
+      },
+    });
+    if (!schedule) {
+      throw boom.notFound("Horario no encontrado para ese userId proporcionado");
+    }
+    return schedule;
+  }
+
+
   async create(data: ScheduleType) {
     const newSchedule = await models.SCHEDULE.create(data);
     return newSchedule;

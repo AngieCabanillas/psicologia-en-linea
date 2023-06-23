@@ -34,6 +34,20 @@ router.get(
   }
 );
 
+router.get(
+  "/user/:userId",
+  validatorHandler(getAcademicInformationSchema, "params"),
+  async (req, res, next) => {
+    try {
+      const { userId } = req.params;
+      const academicInformation = await service.findOneByIdUser(userId);
+      res.json(academicInformation);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 router.post(
   "/",
   validatorHandler(createAcademicInformationSchema, "body"),

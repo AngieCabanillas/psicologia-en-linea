@@ -3,6 +3,9 @@ import './Card.css'
 
 export function CardComponent(props){
 
+    console.log(props);
+    
+
     return(
         <div className="contenedor-card p-10 max-w-xl flex justify-center flex-col md:flex-row items-center mb-10">
             <div className="contenedor-img mb-12 md:mb-0 md:mr-12">
@@ -16,7 +19,7 @@ export function CardComponent(props){
                     {props.detalles}
                 </div>
                 <div>
-                    <Link to="/especialistas/ver-especialista">
+                    <Link to={`/especialistas/ver-especialista/${props.id}`}>
                         <button className="btn-ver">
                             Ver Perfil
                         </button>

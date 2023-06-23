@@ -13,6 +13,10 @@ export const getScheduleByID = async (id: number) => {
   return await axiosClient.get(`${url}/${id}`);
 };
 
+export const getScheduleByUserID = async (userId: number) => {
+  return await axiosClient.get(`${url}/user/${userId}`);
+};
+
 export const createSchedule = async (schedule: Omit<ScheduleType, "id">) => {
   return await axiosClient.post(url, schedule);
 };

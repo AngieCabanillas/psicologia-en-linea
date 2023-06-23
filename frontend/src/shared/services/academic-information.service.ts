@@ -13,6 +13,10 @@ export const getAIByID = async (id: number) => {
   return await axiosClient.get(`${url}/${id}`);
 };
 
+export const getAIByUserID = async (userId: number) => {
+  return await axiosClient.get(`${url}/user/${userId}`);
+};
+
 export const createAI = async (ai: Omit<AcademicInformationType, "id">) => {
   return await axiosClient.post(url, ai);
 };

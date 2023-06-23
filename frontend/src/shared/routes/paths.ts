@@ -19,7 +19,7 @@ export default {
     home: "/home",
     registro: "/registro-client",
     especialistas: "/especialistas",
-    especialistasVerEspecialista: "/especialistas/ver-especialista",
+    especialistasVerEspecialista: "/especialistas/ver-especialista/:id",
     infoAyuda: "/info-ayuda",
     historial: "/historial",
   },

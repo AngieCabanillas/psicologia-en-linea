@@ -21,6 +21,18 @@ class AcademicInformationService {
     return academicInformation;
   }
 
+  async findOneByIdUser(userId: string){
+    const academicInformation = await models.ACADEMIC_INFORMATION.findOne({
+      where: {
+        userId: userId,
+      },
+    });
+    if (!academicInformation) {
+      throw boom.notFound("Información académica no encontrada para ese userId proporcionado");
+    }
+    return academicInformation;
+  }
+
   async create(data: AcademicInformationType) {
     const newAcademicInformation = await models.ACADEMIC_INFORMATION.create(
       data

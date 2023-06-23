@@ -147,7 +147,7 @@ export const EspecialistasPag = () => {
                                 </div>
                                 <div className='flex flex-wrap justify-between w-full'>
                                     {psicologos.map(especialista => (
-                                        <CardComponent key={especialista.id} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
+                                        <CardComponent id={especialista.userId} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
                                     ))}
                                 </div>
                             </TabPane>
@@ -162,7 +162,7 @@ export const EspecialistasPag = () => {
                                 </div>
                                 <div className='flex flex-wrap justify-between w-full'>
                                     {psiquiatras.map(especialista => (
-                                        <CardComponent key={especialista.id} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
+                                        <CardComponent id={especialista.userId} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
                                     ))}
                                 </div>
                             </TabPane>
@@ -177,7 +177,7 @@ export const EspecialistasPag = () => {
                                 </div>
                                 <div className='flex flex-wrap justify-between w-full'>
                                     {terapeutasF.map(especialista => (
-                                        <CardComponent key={especialista.id} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
+                                        <CardComponent id={especialista.userId} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
                                     ))}
                                 </div>
                             </TabPane>
@@ -192,7 +192,7 @@ export const EspecialistasPag = () => {
                                 </div>
                                 <div className='flex flex-wrap justify-between w-full'>
                                     {terapeutasO.map(especialista => (
-                                        <CardComponent key={especialista.id} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
+                                        <CardComponent id={especialista.userId} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
                                     ))}
                                 </div>
                             </TabPane>
@@ -207,7 +207,7 @@ export const EspecialistasPag = () => {
                                 </div>
                                 <div className='flex flex-wrap justify-between w-full'>
                                     {psicoterapeutas.map(especialista => (
-                                        <CardComponent key={especialista.id} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
+                                        <CardComponent id={especialista.userId} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
                                     ))}
                                 </div>
                             </TabPane>
