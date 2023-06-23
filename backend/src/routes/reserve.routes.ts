@@ -93,7 +93,7 @@ router.get(
   }
 );
 //MODALITY: MORNING, AFTERNOON, NIGHT
-//STATE: INIT, ACCEPTED, DONE
+//STATE: PENDING, ACCEPTED, REFUSED, DONE
 router.put(
   "/state/:id",
   validatorHandler(getReserveSchema, "params"),

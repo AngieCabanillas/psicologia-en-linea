@@ -105,7 +105,7 @@ export const EspecialistaPage = () => {
                                 {schedule && Array.isArray(daysArray) && daysArray.length > 0 ? (
                                     daysArray.map((day, index) => (
                                         <div key={index}>
-                                             <HorarioComponent day={day} id={especialista.id} />
+                                             <HorarioComponent day={day} id={especialista.userId} />
                                             </div>
                                        
                                     ))
