@@ -48,8 +48,9 @@ export const MyHorarioComponent = () => {
     setIdHorario(id);
   };
 
-  const openModalDelete = () => {
+  const openModalDelete = (id: number) => {
     setModalDeleteOpen(true);
+    setIdHorario(id);
   };
 
   const closeModalHorario = () => {
@@ -59,6 +60,7 @@ export const MyHorarioComponent = () => {
 
   const closeModalDelete = () => {
     setModalDeleteOpen(false);
+    setToggle(!toggle);
   };
 
   useEffect(() => {
@@ -94,7 +96,12 @@ export const MyHorarioComponent = () => {
                   >
                     Editar
                   </button>
-                  <button className="btn-eliminar" onClick={openModalDelete}>
+                  <button
+                    className="btn-eliminar"
+                    onClick={() => {
+                      openModalDelete(horario.id);
+                    }}
+                  >
                     Eliminar
                   </button>
                 </div>
@@ -119,6 +126,7 @@ export const MyHorarioComponent = () => {
           />
 
           <ModalDeleteHorario
+            id={idHorario}
             modalDeleteOpen={modalDeleteOpen}
             setModalDeleteClose={closeModalDelete}
           />
