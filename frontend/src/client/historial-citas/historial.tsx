@@ -195,7 +195,7 @@ export const HistorialComponent = () =>{
                 )
             })
             const nuevasCardsEnEspera = history.data.map(cita => {
-                return (cita.state == 'INIT' ?
+                return (cita.state == 'PENDING' ?
                     <CitaComponent cita={cita} onUpdate={fetchData} container={true} handleDelete={handleDelete} showInfoModal={showInfoModal} />
                     : null
                 )
