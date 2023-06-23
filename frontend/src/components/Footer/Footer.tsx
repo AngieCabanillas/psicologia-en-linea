@@ -5,7 +5,7 @@ export default function Footer() {
 
     return (
         
-        <div className="footer">
+        <footer>
             <div className="footer-content">
                 <div className="logo-footer">
                     <img src={logoFooter} alt="logo"/>
@@ -17,7 +17,7 @@ export default function Footer() {
                     <p>Contacto</p>
                 </div>
             </div>
-        </div>
+        </footer>
     )
 
 }

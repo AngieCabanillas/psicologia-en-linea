@@ -7,12 +7,13 @@ export function HorarioComponent(props){
     const { user } = useSerenityContext();
     const usuario = user.getUser();
     const usuarioId = Number(usuario?.id)
+    console.log(props);
     
     const dayName = props.day;
     
     const date = (dayName) =>{
-        const daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-        const dayIndex = daysOfWeek.findIndex(day => day.toLowerCase() === dayName.toLowerCase());
+        const daysOfWeek = ['LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES'];
+        const dayIndex = daysOfWeek.findIndex(day => day === dayName);
         
         if (dayIndex === -1) {
           throw new Error('Nombre de día inválido');
@@ -42,7 +43,7 @@ export function HorarioComponent(props){
                 date: final, 
                 description: "Reserva",
                 modality: "DAY",
-                state: "INIT",
+                state: "PENDING",
                 clientId: props.id,
                 userId: usuarioId,
             };

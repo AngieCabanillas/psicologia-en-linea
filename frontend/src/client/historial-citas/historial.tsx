@@ -10,6 +10,7 @@ import { HistorialPresentationComponent } from './presentation';
 import { getReserveByClient, deleteReserve } from "../../shared/services/reserve.service";
 import { getUserByID } from '../../shared/services/user.service';
 import { UserType } from '../../shared/types/user.type';
+import { useSerenityContext } from '../../shared/contexts/SerenityProvider';
 const circleIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
 
 
@@ -25,6 +26,9 @@ export const HistorialComponent = () =>{
 
     const [especialista, setEspecialista] = useState<number>(0);
     const [especialistaData, setEspecialistaData] = useState<UserType>();
+
+    const { user } = useSerenityContext();
+    const usuario = user.getUser();
       
     // const historial: Cita[] = [
     //     {
@@ -184,7 +188,10 @@ export const HistorialComponent = () =>{
     // ]
     const fetchData = async () => {
         try {
-          const history = await getReserveByClient(1);
+          const history = await getReserveByClient(usuario!.id);
+
+          console.log(history.data);
+          
 
             const nuevasCardsAceptadas = history.data.map(cita => {
                 
@@ -283,9 +290,6 @@ export const HistorialComponent = () =>{
         setDataForm(v);
     }
     
-    
-    
-
     return (
         <>
             <Spin spinning={loading} className="h-100" indicator={circleIcon}>
@@ -357,7 +361,7 @@ export const HistorialComponent = () =>{
                         <p><strong>Horario:</strong> {dataForm.modality === 'DAY' ? 'Mañana' : 
                         dataForm.modality === 'AFTERNOON' ? 'Tarde' : 
                         dataForm.modality === 'NIGHT' ? 'Noche' : 'Desconocido'} </p>
-                        <p><strong>Estado:</strong> {dataForm.state === 'INIT' ? 'En espera' : 
+                        <p><strong>Estado:</strong> {dataForm.state === 'PENDING' ? 'En espera' : 
                         dataForm.state === 'ACCEPTED' ? 'Aceptado' : 
                         dataForm.state === 'DONE' ? 'Completado' : 'Desconocido'} </p>
 

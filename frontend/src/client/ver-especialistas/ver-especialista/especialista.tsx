@@ -67,6 +67,7 @@ export const EspecialistaPage = () => {
             try {
                 const scheduleResponse = await getScheduleByUserID(userId);
                 schedule = scheduleResponse.data;
+                
                 setSchedule(scheduleResponse !== null ? scheduleResponse.data : undefined);
             } catch (error) {
                 if (error) {
@@ -84,12 +85,12 @@ export const EspecialistaPage = () => {
         }
     }
 
-    const daysArray = schedule && schedule.days ? schedule.days.replace(/\[|\]/g, "").split(",") : [];
+    const daysArray = schedule && schedule.days ? JSON.parse(schedule.days): [];
 
     return (
         <Spin spinning={loading} className="h-100" indicator={circleIcon}>
             <DatosEspecialistaPage {...especialista} />
-            <section className='content p-16 sm:p-20 -mb-32 sm:p-20' style={{ backgroundColor: '#EDF0F7' }}>
+            <section className='content p-16 -mb-32 sm:p-20' style={{ backgroundColor: '#EDF0F7' }}>
                 <DetallesEspecialistaPage {...especialista} />
                 <div className="contenido grid grid-cols-1 md:grid-cols-4  sm:p-10">
                     <div className="horarios__contenedor col-span-3">
@@ -103,7 +104,10 @@ export const EspecialistaPage = () => {
                             <div className="horarios__contenedor grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                                 {schedule && Array.isArray(daysArray) && daysArray.length > 0 ? (
                                     daysArray.map((day, index) => (
-                                        <HorarioComponent key={index} day={day} id={especialista.id} />
+                                        <div key={index}>
+                                             <HorarioComponent day={day} id={especialista.id} />
+                                            </div>
+                                       
                                     ))
                                 ) : (
                                     "No hay horarios para esta semana."

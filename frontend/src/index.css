@@ -17,6 +17,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  height: 100vh;
   gap: 30px;
   margin: 0 2rem;
 
