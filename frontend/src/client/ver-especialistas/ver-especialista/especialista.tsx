@@ -103,7 +103,7 @@ export const EspecialistaPage = () => {
                             <div className="horarios__contenedor grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                                 {schedule && Array.isArray(daysArray) && daysArray.length > 0 ? (
                                     daysArray.map((day, index) => (
-                                        <HorarioComponent key={index} day={day} />
+                                        <HorarioComponent key={index} day={day} id={especialista.id} />
                                     ))
                                 ) : (
                                     "No hay horarios para esta semana."

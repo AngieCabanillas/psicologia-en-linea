@@ -1,18 +1,15 @@
 import { Tooltip, Popconfirm } from 'antd'
 import './Horario.css'
-import { useParams } from 'react-router-dom';
 import { createReserve } from '../shared/services/reserve.service';
 import { useSerenityContext } from '../shared/contexts/SerenityProvider';
 
 export function HorarioComponent(props){
     const { user } = useSerenityContext();
     const usuario = user.getUser();
-    const userId = Number(usuario?.id)
+    const usuarioId = Number(usuario?.id)
     
     const dayName = props.day;
-    const { id } = useParams();
-    const clientId = Number(id)
-
+    
     const date = (dayName) =>{
         const daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
         const dayIndex = daysOfWeek.findIndex(day => day.toLowerCase() === dayName.toLowerCase());
@@ -39,21 +36,20 @@ export function HorarioComponent(props){
 
     const final = date(dayName)
 
-    const buildReserva = () => {
-        const reserva = {
-          date: final, 
-          description: 'Reserva',
-          modality: 'DAY',
-          state: 'INIT',
-          clientId: clientId,
-          userId: userId,
-        };
-        return reserva;
-      };
     const handleReservar =async () => {
         try {
-            const reserva = buildReserva();
+            const reserva = {
+                date: final, 
+                description: "Reserva",
+                modality: "DAY",
+                state: "INIT",
+                clientId: props.id,
+                userId: usuarioId,
+            };
+            console.log(reserva);
+            
             const newReserve = await createReserve(reserva);
+            
             console.log('Reserva creada:', newReserve);
         }catch (error) {
             console.error('Error al crear reserva:', error);
