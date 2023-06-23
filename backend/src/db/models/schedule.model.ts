@@ -24,11 +24,11 @@ const ScheduleSchema: ModelAttributes<Schedule, ScheduleType> = {
   },
   dateStart: {
     allowNull: false,
-    type: DataTypes.DATEONLY,
+    type: DataTypes.DATE,
   },
   dateEnd: {
     allowNull: false,
-    type: DataTypes.DATEONLY,
+    type: DataTypes.DATE,
   },
   detail: {
     allowNull: true,
