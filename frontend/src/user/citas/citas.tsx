@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
+import { useQuery } from "react-query";
+import { getReserveByUser } from "../../shared/services/reserve.service";
+import { useSerenityContext } from "../../shared/contexts/SerenityProvider";
 
 const circleIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -28,7 +31,21 @@ const listaCitas = [
 ];
 
 export const CitasComponent = () => {
+  const { user } = useSerenityContext();
   const [loading, setLoading] = useState<boolean>(true);
+
+  useQuery(
+    "query-get-reserves-all-citas",
+    async () => {
+      return await getReserveByUser(user.getUser()?.id ?? 0);
+    },
+    {
+      enabled: true,
+      onSuccess: (data) => {
+        console.log(data.data, "kk");
+      },
+    }
+  );
 
   useEffect(() => {
     setLoading(false);
