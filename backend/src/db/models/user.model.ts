@@ -28,7 +28,6 @@ const UserSchema: ModelAttributes<User, UserType> = {
   },
   rol: {
     allowNull: false,
-    unique: true,
     type: DataTypes.STRING(50),
   },
   email: {
