@@ -24,6 +24,13 @@ export const editReserve = async (
   return await axiosClient.put(`${url}/${id}`, state);
 };
 
+
+export const getReserveByClient = async (
+  id: number
+) => {
+  return await axiosClient.get(`${url}/client/${id}`);
+};
+
 export const editStateReserve = async (
   reserve: { state: string },
   id: number
