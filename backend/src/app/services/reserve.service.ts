@@ -51,31 +51,34 @@ class ReserveService {
   async findByClient(clientId: string) {
     const reserves = await models.RESERVE.findAll({
       where: {
-        clientId: clientId
-      }
+        clientId: clientId,
+      },
     });
-  
+
     if (reserves.length === 0) {
-      throw boom.notFound("No se encontraron reservas para el ID de cliente proporcionado");
+      throw boom.notFound(
+        "No se encontraron reservas para el ID de cliente proporcionado"
+      );
     }
-  
+
     return reserves;
   }
   async findByUser(userId: string) {
     const reserves = await models.RESERVE.findAll({
       where: {
-        userId: userId
-      }
+        userId: userId,
+      },
+      include: [{ model: models.CLIENT, as: "client" }],
     });
-  
+
     if (reserves.length === 0) {
-      throw boom.notFound("No se encontraron reservas para el ID de usario proporcionado");
+      throw boom.notFound(
+        "No se encontraron reservas para el ID de usario proporcionado"
+      );
     }
-  
+
     return reserves;
   }
 }
-
-
 
 export default ReserveService;

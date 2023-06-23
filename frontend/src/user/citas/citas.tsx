@@ -20,7 +20,7 @@ export const CitasComponent = () => {
     {
       enabled: true,
       onSuccess: (data) => {
-        setReservas(data.data.filter((reserva) => reserva.state == "ACCEPTED"));
+        setReservas(data.data.filter((reserva) => reserva.state == "PENDING"));
       },
     }
   );
@@ -49,8 +49,8 @@ export const CitasComponent = () => {
                 </div>
                 <div className="px-4 flex flex-col justify-center">
                   <div>{cita.state}</div>
+                  <div>{cita.client.name}</div>
                   <div>{cita.date}</div>
-                  <div>{cita.clientId}</div>
                 </div>
               </div>
             );
