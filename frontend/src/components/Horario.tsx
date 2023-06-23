@@ -44,8 +44,8 @@ export function HorarioComponent(props){
                 description: "Reserva",
                 modality: "DAY",
                 state: "PENDING",
-                clientId: props.id,
-                userId: usuarioId,
+                clientId: usuarioId,
+                userId: props.id,
             };
             console.log(reserva);
             

@@ -7,32 +7,10 @@ import { useSerenityContext } from "../../shared/contexts/SerenityProvider";
 
 const circleIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
-const listaCitas = [
-  {
-    name: "Aaron Paredes Cabrera",
-    date: "20/10/2020",
-  },
-  {
-    name: "Angie Cabanillas Beltran",
-    date: "20/10/2020",
-  },
-  {
-    name: "Ana G Otoya",
-    date: "20/10/2020",
-  },
-  {
-    name: "Carlos Lizarzaburu",
-    date: "20/10/2020",
-  },
-  {
-    name: "Camila Rivera",
-    date: "20/10/2020",
-  },
-];
-
 export const CitasComponent = () => {
   const { user } = useSerenityContext();
   const [loading, setLoading] = useState<boolean>(true);
+  const [reservas, setReservas] = useState([]);
 
   useQuery(
     "query-get-reserves-all-citas",
@@ -42,7 +20,7 @@ export const CitasComponent = () => {
     {
       enabled: true,
       onSuccess: (data) => {
-        console.log(data.data, "kk");
+        setReservas(data.data.filter((reserva) => reserva.state == "ACCEPTED"));
       },
     }
   );
@@ -63,15 +41,16 @@ export const CitasComponent = () => {
             />
           </div>
 
-          {listaCitas.map((cita, index) => {
+          {reservas.map((cita: any, index) => {
             return (
               <div key={index} className="w-full h-16 my-5 flex flex-row">
                 <div className="w-20 flex justify-center items-center">
                   <div className="w-10 h-10 rounded-full bg-slate-50"></div>
                 </div>
                 <div className="px-4 flex flex-col justify-center">
-                  <div>{cita.name}</div>
+                  <div>{cita.state}</div>
                   <div>{cita.date}</div>
+                  <div>{cita.clientId}</div>
                 </div>
               </div>
             );
