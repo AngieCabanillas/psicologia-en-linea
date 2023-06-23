@@ -13,6 +13,7 @@ export const MyHorarioComponent = () => {
   const [modalInfoOpen, setModalInfoOpen] = useState<boolean>(false);
   const [modalDeleteOpen, setModalDeleteOpen] = useState<boolean>(false);
   const [titleState, setTitleState] = useState<string>("");
+  const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
     setLoading(false);
@@ -21,11 +22,13 @@ export const MyHorarioComponent = () => {
   const openModalCreate = () => {
     setTitleState("Crear Horario");
     setModalInfoOpen(true);
+    setIsEdit(false);
   };
 
   const openModalEdit = () => {
     setTitleState("Editar Horario");
     setModalInfoOpen(true);
+    setIsEdit(true);
   };
 
   const openModalDelete = () => {
@@ -70,6 +73,7 @@ export const MyHorarioComponent = () => {
           <MyHorarioCalendar />
 
           <ModalHorario
+            isEdit={isEdit}
             modalOpen={modalInfoOpen}
             setModalClose={closeModalHorario}
             title={titleState}

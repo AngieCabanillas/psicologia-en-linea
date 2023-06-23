@@ -1,10 +1,16 @@
 import { Button, Modal, Select, TimePicker } from "antd";
+import { Controller, useForm } from "react-hook-form";
+import { ScheduleType } from "../../../../shared/types/schedule.type";
+import { useSerenityContext } from "../../../../shared/contexts/SerenityProvider";
+import { ScheduleResolver } from "./modal-horario.yup";
 import { useState } from "react";
+import moment from "moment";
 
 type ModalHorarioProps = {
   modalOpen: boolean;
   setModalClose: () => void;
   title: string;
+  isEdit: boolean;
 };
 
 const OPTIONS = ["LUNES", "MARTES", "MIÉRCOLES", "JUEVES", "VIERNES"];
@@ -13,10 +19,26 @@ export const ModalHorario = ({
   modalOpen,
   setModalClose,
   title,
+  isEdit,
 }: ModalHorarioProps) => {
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const { user } = useSerenityContext();
+  const [timeRange, setTimeRange] = useState<any>(null);
 
-  const filteredOptions = OPTIONS.filter((o) => !selectedItems.includes(o));
+  const { getValues, control } = useForm<Omit<ScheduleType, "id">>({
+    resolver: ScheduleResolver,
+    mode: "all",
+    defaultValues: {
+      days: "[]",
+      dateStart: new Date(),
+      dateEnd: new Date(),
+      detail: "-",
+      userId: user.getUser()?.id,
+    },
+  });
+
+  const filteredOptions = OPTIONS.filter(
+    (o) => !JSON.parse(getValues().days).includes(o)
+  );
 
   return (
     <Modal
@@ -53,22 +75,41 @@ export const ModalHorario = ({
       <div className="text-base flex justify-center py-3">
         Días de la semana:
       </div>
-      <Select
-        mode="multiple"
-        placeholder="Seleccione los días de la semana"
-        value={selectedItems}
-        onChange={setSelectedItems}
-        style={{ width: "100%" }}
-        options={filteredOptions.map((item) => ({
-          value: item,
-          label: item,
-        }))}
+
+      <Controller
+        name="days"
+        control={control}
+        render={({ field }) => (
+          <Select
+            mode="multiple"
+            placeholder="Seleccione los días de la semana"
+            value={JSON.parse(field.value)}
+            onChange={(data) => {
+              field.onChange(JSON.stringify(data));
+            }}
+            style={{ width: "100%" }}
+            options={filteredOptions.map((item) => ({
+              value: item,
+              label: item,
+            }))}
+          />
+        )}
       />
 
       <div className="text-base flex justify-center py-3">Horario:</div>
       <TimePicker.RangePicker
         className="w-full"
         placeholder={["Inicio", "Fin"]}
+        value={timeRange && [moment(timeRange[0]), moment(timeRange[1])]}
+        onChange={(dates) => {
+          if (dates && dates.length === 2) {
+            const startDate = dates[0]?.toDate();
+            const endDate = dates[1]?.toDate();
+            setTimeRange([startDate, endDate]);
+          } else {
+            setTimeRange(null);
+          }
+        }}
       />
     </Modal>
   );
