@@ -65,8 +65,23 @@ router.put(
   }
 );
 
+
+router.get(
+  "/client/:id",
+  validatorHandler(getReserveSchema, "params"),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const reserves = await service.findByClient(id);
+      res.json(reserves);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 //MODALITY: MORNING, AFTERNOON, NIGHT
-//STATE: INIT, ACCEPTED, REFUSED
+//STATE: INIT, ACCEPTED, DONE
 router.put(
   "/state/:id",
   validatorHandler(getReserveSchema, "params"),

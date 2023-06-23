@@ -1,14 +1,34 @@
 import { Button, Modal } from "antd";
+import { useMutation } from "react-query";
+import { deleteSchedule } from "../../../../shared/services/schedule.service";
 
 type ModalDeleteHorarioProps = {
   modalDeleteOpen: boolean;
   setModalDeleteClose: () => void;
+  id?: number;
 };
 
 export const ModalDeleteHorario = ({
   modalDeleteOpen,
   setModalDeleteClose,
+  id,
 }: ModalDeleteHorarioProps) => {
+  const { mutate } = useMutation(
+    "query-delete-horario",
+    async () => {
+      return await deleteSchedule(id ?? 0);
+    },
+    {
+      onSuccess: () => {
+        setModalDeleteClose();
+      },
+    }
+  );
+
+  const onDeleteHorario = () => {
+    mutate();
+  };
+
   return (
     <Modal
       title="Eliminar Horario"
@@ -20,7 +40,7 @@ export const ModalDeleteHorario = ({
           <Button
             type="primary"
             style={{ backgroundColor: "#2d3648" }}
-            onClick={setModalDeleteClose}
+            onClick={onDeleteHorario}
           >
             Aceptar
           </Button>
@@ -34,13 +54,6 @@ export const ModalDeleteHorario = ({
         </div>
       }
     >
-      <div className="my-8 shadow-xl rounded-lg w-full h-28 px-8 flex flex-row justify-between items-center">
-        <div className="text-base">Horario de Día:</div>
-        <div className="text-base" style={{ color: "#878D96" }}>
-          Martes, Jueves, Viernes 9:00 AM - 12:30 PM
-        </div>
-      </div>
-
       <div className="text-base flex justify-center">
         Estás seguro/a de eliminar este horario?
       </div>

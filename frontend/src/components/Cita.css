@@ -9,6 +9,15 @@
     border-bottom-left-radius: 5px;
 }
 
+#date {
+    margin-top: 1px !important;
+}
+
+.ant-modal-body {
+    margin-top: 20px;
+}
+
+
 /* .cita__content{
 
 }

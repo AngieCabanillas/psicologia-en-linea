@@ -47,6 +47,22 @@ class ReserveService {
 
     return { id };
   }
+
+  async findByClient(clientId: string) {
+    const reserves = await models.RESERVE.findAll({
+      where: {
+        clientId: clientId
+      }
+    });
+  
+    if (reserves.length === 0) {
+      throw boom.notFound("No se encontraron reservas para el ID de cliente proporcionado");
+    }
+  
+    return reserves;
+  }
 }
+
+
 
 export default ReserveService;
