@@ -3,14 +3,21 @@ import { Controller, useForm } from "react-hook-form";
 import { ScheduleType } from "../../../../shared/types/schedule.type";
 import { useSerenityContext } from "../../../../shared/contexts/SerenityProvider";
 import { ScheduleResolver } from "./modal-horario.yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import moment from "moment";
+import { useQuery } from "react-query";
+import {
+  createSchedule,
+  editSchedule,
+  getScheduleByID,
+} from "../../../../shared/services/schedule.service";
 
 type ModalHorarioProps = {
   modalOpen: boolean;
   setModalClose: () => void;
   title: string;
   isEdit: boolean;
+  id?: number;
 };
 
 const OPTIONS = ["LUNES", "MARTES", "MIÉRCOLES", "JUEVES", "VIERNES"];
@@ -20,11 +27,14 @@ export const ModalHorario = ({
   setModalClose,
   title,
   isEdit,
+  id,
 }: ModalHorarioProps) => {
   const { user } = useSerenityContext();
   const [timeRange, setTimeRange] = useState<any>(null);
 
-  const { getValues, control } = useForm<Omit<ScheduleType, "id">>({
+  const { getValues, control, handleSubmit, reset } = useForm<
+    Omit<ScheduleType, "id">
+  >({
     resolver: ScheduleResolver,
     mode: "all",
     defaultValues: {
@@ -40,6 +50,87 @@ export const ModalHorario = ({
     (o) => !JSON.parse(getValues().days).includes(o)
   );
 
+  const { refetch: refetchCreate } = useQuery(
+    "query-horario-create",
+    async () => {
+      return await createSchedule({
+        days: getValues().days,
+        dateStart: timeRange[0],
+        dateEnd: timeRange[1],
+        detail: getValues().detail,
+        userId: getValues().userId,
+      });
+    },
+    {
+      enabled: false,
+      onSuccess: () => {
+        setModalClose();
+      },
+    }
+  );
+
+  const { refetch: refetchEdit } = useQuery(
+    "query-horario-edit",
+    async () => {
+      return await editSchedule(
+        {
+          days: getValues().days,
+          dateStart: timeRange[0],
+          dateEnd: timeRange[1],
+          detail: getValues().detail,
+        },
+        id ?? 0
+      );
+    },
+    {
+      enabled: false,
+      onSuccess: () => {
+        setModalClose();
+      },
+    }
+  );
+
+  const { refetch: refetchGetHorario } = useQuery(
+    "query-get-horario",
+    async () => {
+      return await getScheduleByID(id ?? 0);
+    },
+    {
+      enabled: false,
+      onSuccess: (data) => {
+        reset(data.data);
+        setTimeRange([data.data.dateStart, data.data.dateEnd]);
+      },
+    }
+  );
+
+  const onGuardar = () => {
+    if (isEdit) {
+      handleSubmit(() => {
+        refetchEdit();
+      })();
+    } else {
+      handleSubmit(() => {
+        refetchCreate();
+      })();
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      refetchGetHorario();
+    } else {
+      reset({
+        days: "[]",
+        dateStart: new Date(),
+        dateEnd: new Date(),
+        detail: "-",
+        userId: user.getUser()?.id,
+      });
+      setTimeRange(null);
+    }
+  }, [id]);
+
   return (
     <Modal
       title={title}
@@ -51,7 +142,7 @@ export const ModalHorario = ({
           <Button
             type="primary"
             style={{ backgroundColor: "#2d3648" }}
-            onClick={setModalClose}
+            onClick={onGuardar}
           >
             Guardar
           </Button>
@@ -65,13 +156,6 @@ export const ModalHorario = ({
         </div>
       }
     >
-      <div className="my-8 shadow-xl rounded-lg w-full h-28 px-8 flex flex-row justify-between items-center">
-        <div className="text-base">Horario de Día:</div>
-        <div className="text-base" style={{ color: "#878D96" }}>
-          Martes, Jueves, Viernes 9:00 AM - 12:30 PM
-        </div>
-      </div>
-
       <div className="text-base flex justify-center py-3">
         Días de la semana:
       </div>

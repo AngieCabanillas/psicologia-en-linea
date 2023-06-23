@@ -5,6 +5,8 @@ import { Spin } from "antd";
 import MyHorarioCalendar from "./my-horario-calendar/my-horario-calendar";
 import { ModalDeleteHorario } from "./modals/modal-delete-horario/modal-delete-horario";
 import { ModalHorario } from "./modals/modal-horario/modal-horario";
+import { useQuery } from "react-query";
+import { getAllSchedules } from "../../shared/services/schedule.service";
 
 const circleIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -14,21 +16,36 @@ export const MyHorarioComponent = () => {
   const [modalDeleteOpen, setModalDeleteOpen] = useState<boolean>(false);
   const [titleState, setTitleState] = useState<string>("");
   const [isEdit, setIsEdit] = useState(false);
+  const [idHorario, setIdHorario] = useState<number | undefined>(undefined);
+  const [toggle, setToggle] = useState(false);
 
-  useEffect(() => {
-    setLoading(false);
-  });
+  const [horarios, setHorarios] = useState([]);
+
+  const { refetch } = useQuery(
+    "query-get-horario-all",
+    async () => {
+      return await getAllSchedules();
+    },
+    {
+      enabled: false,
+      onSuccess: (data) => {
+        setHorarios(data.data);
+      },
+    }
+  );
 
   const openModalCreate = () => {
     setTitleState("Crear Horario");
     setModalInfoOpen(true);
     setIsEdit(false);
+    setIdHorario(undefined);
   };
 
-  const openModalEdit = () => {
+  const openModalEdit = (id: number) => {
     setTitleState("Editar Horario");
     setModalInfoOpen(true);
     setIsEdit(true);
+    setIdHorario(id);
   };
 
   const openModalDelete = () => {
@@ -37,11 +54,20 @@ export const MyHorarioComponent = () => {
 
   const closeModalHorario = () => {
     setModalInfoOpen(false);
+    setToggle(!toggle);
   };
 
   const closeModalDelete = () => {
     setModalDeleteOpen(false);
   };
+
+  useEffect(() => {
+    refetch();
+  }, [toggle]);
+
+  useEffect(() => {
+    setLoading(false);
+  });
 
   return (
     <>
@@ -49,20 +75,32 @@ export const MyHorarioComponent = () => {
         <div className="content p-20">
           <div className="py-2"></div>
 
-          <div className="my-8 shadow-xl rounded-lg w-full h-28 px-8 flex flex-row justify-between items-center">
-            <div className="text-xl">Horario de Día:</div>
-            <div className="text-base" style={{ color: "#878D96" }}>
-              Martes, Jueves, Viernes 9:00 AM - 12:30 PM
-            </div>
-            <div className="flex gap-x-3">
-              <button className="btn-editar" onClick={openModalEdit}>
-                Editar
-              </button>
-              <button className="btn-eliminar" onClick={openModalDelete}>
-                Eliminar
-              </button>
-            </div>
-          </div>
+          {horarios.map((horario: any, key) => {
+            return (
+              <div
+                key={key}
+                className="my-8 shadow-xl rounded-lg w-full h-28 px-8 flex flex-row justify-between items-center"
+              >
+                <div className="text-xl">Horario de Día:</div>
+                <div className="text-base" style={{ color: "#878D96" }}>
+                  {horario.days}
+                </div>
+                <div className="flex gap-x-3">
+                  <button
+                    className="btn-editar"
+                    onClick={() => {
+                      openModalEdit(horario.id);
+                    }}
+                  >
+                    Editar
+                  </button>
+                  <button className="btn-eliminar" onClick={openModalDelete}>
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+            );
+          })}
 
           <div className="py-4 w-full flex justify-center">
             <button className="btn-editar" onClick={openModalCreate}>
@@ -77,6 +115,7 @@ export const MyHorarioComponent = () => {
             modalOpen={modalInfoOpen}
             setModalClose={closeModalHorario}
             title={titleState}
+            id={idHorario}
           />
 
           <ModalDeleteHorario
