@@ -12,15 +12,15 @@ export const CitasComponent = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [reservas, setReservas] = useState([]);
 
-  useQuery(
+  const { refetch } = useQuery(
     "query-get-reserves-all-citas",
     async () => {
       return await getReserveByUser(user.getUser()?.id ?? 0);
     },
     {
-      enabled: true,
+      enabled: false,
       onSuccess: (data) => {
-        setReservas(data.data.filter((reserva) => reserva.state == "PENDING"));
+        setReservas(data.data.filter((reserva) => reserva.state == "ACCEPTED"));
       },
     }
   );
@@ -28,6 +28,10 @@ export const CitasComponent = () => {
   useEffect(() => {
     setLoading(false);
   });
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   return (
     <>
