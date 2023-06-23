@@ -8,7 +8,14 @@ type ModalSolicitudesProps = {
 export const ModalSolicitudes = ({
   modalSolicitudesOpen,
   setModalSolicitudesClose,
+  reserve
 }: ModalSolicitudesProps) => {
+  if (!reserve) {
+    return null; // Si no hay reserva seleccionada, no mostrar el modal
+  }
+
+  
+
   return (
     <Modal
       title="Reserva de cita"
@@ -30,20 +37,22 @@ export const ModalSolicitudes = ({
       <div className="w-full py-6">
         <div className="flex gap-x-6 items-center">
           <div className="w-10 h-10 bg-slate-500 rounded-full"></div>
-          <div className="text-base font-bold">Título de reserva</div>
+          <div className="text-base font-bold">{reserve.description}</div>
         </div>
 
         <div className="py-6">
-          <div className="text-base">Subtitulo de reserva</div>
-          <div className="text-base">
-            Lorem ipsum dolor sit amet, consectetur adipiscingLorem ipsum dolor
-            sit amet, consectetur adipiscingLorem ipsum dolor sit amet,
-            consectetur adipiscingLorem ipsum dolor sit amet, consectetur
-            adipiscingLorem ipsum dolor sit amet, consectetur adipiscingLorem
-            ipsum dolor sit amet, consectetur adipiscing
+          <div className="text-base font-bold my-5">Datos de reserva</div>
+          <div className="text-base my-2">
+          <b>Fecha: </b>{reserve.date}
+          </div>
+          <div className="text-base my-2">
+          <b>Modalidad: </b>{reserve.modality}
+          </div>
+          <div className="text-base my-2">
+          <b>Estado: </b>{reserve.state}
           </div>
 
-          <div className="text-base">Subtitulo de reserva</div>
+          
         </div>
       </div>
     </Modal>

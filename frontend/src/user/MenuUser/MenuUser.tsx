@@ -10,7 +10,7 @@ const MenuUser = ({ children }: MenuUserProps) => {
     <>
       <Navbar />
       {children}
-      <Footer />
+      
     </>
   );
 };

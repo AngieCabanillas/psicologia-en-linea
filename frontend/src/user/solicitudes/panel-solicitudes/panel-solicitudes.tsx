@@ -1,15 +1,13 @@
-import { Button, DatePicker, DatePickerProps } from "antd";
+import React, { useState, useEffect, useContext } from "react";
+import { Button } from "antd";
 import { ModalSolicitudes } from "../modal-solicitudes/modal-solicitudes";
-import { useState, useEffect } from "react";
-import { getReserveByUser } from "../../../shared/services/reserve.service";
-import { useContext } from "react";
+import { getReserveByUser, editStateReserve } from "../../../shared/services/reserve.service";
 import { SerenityContext } from "../../../shared/contexts/SerenityProvider";
 
-
-
-export const PanelSolicitudes = () => {
-  const [modalSolicitudesOpen, setModalSolicitudesOpen] = useState<boolean>(false);
+export const PanelSolicitudes = ({ stateFilter }) => {
+  const [modalSolicitudesOpen, setModalSolicitudesOpen] = useState(false);
   const [reserves, setReserves] = useState([]);
+  const [selectedReserve, setSelectedReserve] = useState(null);
 
   const context = useContext(SerenityContext);
 
@@ -20,31 +18,57 @@ export const PanelSolicitudes = () => {
   const { user } = context;
   const userId = user.getUser().id;
 
-
   useEffect(() => {
     const fetchReserves = async () => {
       try {
         const response = await getReserveByUser(userId);
-        setReserves(response.data);
-        console.log(response.data);
+        const filteredReserves = response.data.filter(reserve => reserve.state === stateFilter);
+        setReserves(filteredReserves);
+        console.log(filteredReserves);
       } catch (error) {
         console.error("Error fetching reserves:", error);
       }
     };
 
     fetchReserves();
-  }, []);
+  }, [userId, stateFilter]);
 
-  const openModalSolicitudes = () => {
+  const openModalSolicitudes = (reserve) => {
+    setSelectedReserve(reserve);
     setModalSolicitudesOpen(true);
   };
 
   const closeModalSolicitudes = () => {
+    setSelectedReserve(null);
     setModalSolicitudesOpen(false);
   };
 
-  const onChange: DatePickerProps["onChange"] = (date, dateString) => {
-    console.log(date, dateString);
+  const acceptReserve = (id) => {
+    const newState = { state: "ACCEPTED" };
+
+    editStateReserve(newState, id)
+      .then((response) => {
+        alert("Estado actualizado");
+        console.log("Estado actualizado:", response);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error al actualizar el estado:", error);
+      });
+  };
+
+  const rejectReserve = (id) => {
+    const newState = { state: "REFUSED" };
+
+    editStateReserve(newState, id)
+      .then((response) => {
+        alert("Estado actualizado");
+        console.log("Estado actualizado:", response);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error al actualizar el estado:", error);
+      });
   };
 
   return (
@@ -58,19 +82,26 @@ export const PanelSolicitudes = () => {
               <Button
                 type="primary"
                 style={{ backgroundColor: "#000" }}
-                onClick={() => openModalSolicitudes(reserve.id)}
+                onClick={() => openModalSolicitudes(reserve)}
               >
-                Ver:
+                Ver
               </Button>
-              <Button type="primary" style={{ backgroundColor: "#2d3648" }}>
-                Aceptar
-              </Button>
-              <Button
-                type="primary"
-                style={{ border: "1px solid #2d3648", color: "black" }}
-              >
-                Rechazar
-              </Button>
+              {reserve.state === "PENDING" && (
+                <Button
+                  type="primary"
+                  style={{ backgroundColor: "#2d3648" }}
+                  onClick={() => acceptReserve(reserve.id)}
+                >
+                  Aceptar
+                </Button>
+              )}
+              {reserve.state !== "ACCEPTED"&& reserve.state !== "REFUSED" && (
+                <Button type="primary" style={{ border: "1px solid #2d3648", color: "black" }}
+                onClick={() => rejectReserve(reserve.id)}
+                >
+                  Rechazar
+                </Button>
+              )}
             </div>
           </div>
         ))}
@@ -79,6 +110,7 @@ export const PanelSolicitudes = () => {
       <ModalSolicitudes
         modalSolicitudesOpen={modalSolicitudesOpen}
         setModalSolicitudesClose={closeModalSolicitudes}
+        reserve={selectedReserve}
       />
     </div>
   );
