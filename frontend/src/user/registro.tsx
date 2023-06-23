@@ -137,7 +137,24 @@ export default function RegistroUsuario() {
                 control={control}
                 render={({ field }) => (
                   <>
-                    <input
+                    <select className="select" {...field}>
+                      <option value="PSICOLOGIA" selected={field.value === "PSICOLOGIA"}>
+                        Psicólogo
+                      </option>
+                      <option value="PSIQUIATRIA" selected={field.value === "PSIQUIATRIA"}>
+                        Psiquiatra
+                      </option>
+                      <option value="TERAPIA OCUPACIONAL" selected={field.value === "TERAPIA OCUPACIONAL"}>
+                        Terapeuta Ocupacional
+                      </option>
+                      <option value="TERAPIA FAMILIAR" selected={field.value === "TERAPIA FAMILIAR"}>
+                        Terapeuta Familiar
+                      </option>
+                      <option value="PSICOTERAPIA" selected={field.value === "PSICOTERAPIA"}>
+                        Psicoterapeuta
+                      </option>
+                    </select>
+                    {/* <input
                       type="radio"
                       checked={field.value === "PSICOLOGO"}
                       onChange={field.onChange}
@@ -152,7 +169,7 @@ export default function RegistroUsuario() {
                       name="userType"
                       value="PSIQUIATRA"
                     />
-                    Psiquiatra
+                    Psiquiatra */}
                   </>
                 )}
               />
@@ -162,7 +179,7 @@ export default function RegistroUsuario() {
               <input
                 type="button"
                 onClick={iniciarSesion}
-                value="Iniciar Sesión"
+                value="Regístrate"
               />
             </div>
           </div>

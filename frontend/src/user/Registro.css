@@ -36,7 +36,6 @@
 .registro-form {
   position: relative;
 
-  height: 570px;
   width: 470px;
   border: 2px solid #2d3648;
   border-radius: 8px;
@@ -57,7 +56,6 @@
   flex-direction: column;
   height: 50px;
   width: 100%;
-  margin-top: 40px;
   gap: 8px;
 }
 
@@ -156,4 +154,10 @@
 
 .input-radio {
   margin-top: 50px !important;
+}
+
+.select{
+  padding: 4px 2px;
+  border: 2px solid #cbd2e0;
+  border-radius: 2px;
 }

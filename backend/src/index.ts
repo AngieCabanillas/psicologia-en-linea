@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 //CORS
 const whitelist = [
   "http://localhost:3000",
+  "http://localhost:5173",
   "http://192.168.1.24:3000",
   "http://127.0.0.1:5173"
 ];

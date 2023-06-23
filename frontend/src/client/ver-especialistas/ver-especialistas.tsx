@@ -5,81 +5,120 @@ import { useEffect, useState } from "react";
 import { PresentationEspecialistasPage } from "./presentation";
 import TabPane from "antd/es/tabs/TabPane";
 import { CardComponent } from "../../components/Card";
+import { getAllUsers } from '../../shared/services/user.service';
+import { getAllAI } from '../../shared/services/academic-information.service';
 
 const circleIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
 
 export const EspecialistasPag = () => {
     const [loading, setLoading] = useState<boolean>(true);
+    const [especialistas, setEspecialistas] = useState<any[]>([]);
 
     const especialidades = {
-        psiquiatria: "Psiquiatría",
-        psicologia: "Psicología",
-        terapiaO: "Terapia Ocupacional",
-        terapiaF: "Terapia Familiar",
-        psicoterapia: "Psicoterapia",
+        psiquiatria: "PSIQUIATRIA",
+        psicologia: "PSICOLOGIA",
+        terapiaO: "TERAPIA OCUPACIONAL",
+        terapiaF: "TERAPIA FAMILIAR",
+        psicoterapia: "PSICOTERAPIA",
     };
 
-    const especialistas = [
-        {
-            id: 1,
-            nombres: 'Juan Álvarez',
-            especialidad: 'Psiquiatría',
-            detalles: '10 años de experiencia en el tratamiento de trastornos de ansiedad y depresión. Licenciatura en Medicina y Maestría en Psiquiatría en la Universidad Nacional de Trujillo.',
-        },
-        {
-            id: 2,
-            nombres: 'Marta López',
-            especialidad: 'Psicología',
-            detalles: '5 años de experiencia en el tratamiento de problemas de pareja y comunicación. Licenciada en Psicología y Maestría en Terapia de Pareja en la Universidad Privada del Norte.',
-        },
-        {
-            id: 3,
-            nombres: 'Carlos González',
-            especialidad: 'Terapia Ocupacional',
-            detalles: '8 años de experiencia en el tratamiento de trastornos de conducta en niños y adolescentes. Licenciado en Psicología y Maestría en Psicología Infantil en la Universidad César Vallejo.',
-        },
-        {
-            id: 4,
-            nombres: 'Ana Gutiérrez',
-            especialidad: 'Terapia Ocupacional',
-            detalles: '12 años de experiencia en el tratamiento de trastornos de ansiedad y fobias. Licenciada en Psicología y Doctorado en Terapia Cognitivo-Conductual en la Universidad de Lima.',
-        },
-        {
-            id: 5,
-            nombres: 'Carla García',
-            especialidad: 'Psicología Clínica',
-            detalles: 'La Dra. Carla García es una psicóloga clínica con experiencia en el tratamiento de diversos trastornos de la salud mental, incluyendo trastornos del estado de ánimo, trastornos de ansiedad y trastornos de la alimentación. Con una Licenciatura en Psicología en la Universidad Nacional de Trujillo y una Maestría en Psicología Clínica en la Universidad San Martín de Porres, la Dra. García utiliza un enfoque integrativo en su práctica, combinando diferentes técnicas terapéuticas, como la terapia cognitivo-conductual y la terapia de aceptación y compromiso, para adaptarse a las necesidades individuales de cada paciente.',
-        },
-        {
-            id: 6,
-            nombres: 'Pedro Ramírez',
-            especialidad: 'Terapia Ocupacional',
-            detalles: 'El Lic. Pedro Ramírez es un terapeuta ocupacional con más de 5 años de experiencia en el tratamiento de pacientes con problemas de salud mental. Con una Licenciatura en Terapia Ocupacional en la Universidad Nacional de Trujillo, el Lic. Ramírez se especializa en el diseño de actividades ...',
-        },
-        {
-            id: 7,
-            nombres: 'Ana Torres',
-            especialidad: 'Terapia Ocupacional',
-            detalles: 'Especialista en terapia ocupacional para el tratamiento de trastornos del espectro autista y otras discapacidades neurológicas. Licenciada en Terapia Ocupacional por la Universidad de Lima.',
-        },
-        {
-            id: 8,
-            nombres: 'Luisa Fernández',
-            especialidad: 'Psicoterapia',
-            detalles: 'Especialista en terapia de pareja y terapia de familia para la resolución de conflictos y mejora de la comunicación. Maestría en Psicología Clínica y de la Salud en la Universidad de Barcelona.',
-        },
-    ]
+    // const especialistas = [
+    //     {
+    //         id: 1,
+    //         nombres: 'Juan Álvarez',
+    //         especialidad: 'Psiquiatría',
+    //         detalles: '10 años de experiencia en el tratamiento de trastornos de ansiedad y depresión. Licenciatura en Medicina y Maestría en Psiquiatría en la Universidad Nacional de Trujillo.',
+    //     },
+    //     {
+    //         id: 2,
+    //         nombres: 'Marta López',
+    //         especialidad: 'Psicología',
+    //         detalles: '5 años de experiencia en el tratamiento de problemas de pareja y comunicación. Licenciada en Psicología y Maestría en Terapia de Pareja en la Universidad Privada del Norte.',
+    //     },
+    //     {
+    //         id: 3,
+    //         nombres: 'Carlos González',
+    //         especialidad: 'Terapia Ocupacional',
+    //         detalles: '8 años de experiencia en el tratamiento de trastornos de conducta en niños y adolescentes. Licenciado en Psicología y Maestría en Psicología Infantil en la Universidad César Vallejo.',
+    //     },
+    //     {
+    //         id: 4,
+    //         nombres: 'Ana Gutiérrez',
+    //         especialidad: 'Terapia Ocupacional',
+    //         detalles: '12 años de experiencia en el tratamiento de trastornos de ansiedad y fobias. Licenciada en Psicología y Doctorado en Terapia Cognitivo-Conductual en la Universidad de Lima.',
+    //     },
+    //     {
+    //         id: 5,
+    //         nombres: 'Carla García',
+    //         especialidad: 'Psicología Clínica',
+    //         detalles: 'La Dra. Carla García es una psicóloga clínica con experiencia en el tratamiento de diversos trastornos de la salud mental, incluyendo trastornos del estado de ánimo, trastornos de ansiedad y trastornos de la alimentación. Con una Licenciatura en Psicología en la Universidad Nacional de Trujillo y una Maestría en Psicología Clínica en la Universidad San Martín de Porres, la Dra. García utiliza un enfoque integrativo en su práctica, combinando diferentes técnicas terapéuticas, como la terapia cognitivo-conductual y la terapia de aceptación y compromiso, para adaptarse a las necesidades individuales de cada paciente.',
+    //     },
+    //     {
+    //         id: 6,
+    //         nombres: 'Pedro Ramírez',
+    //         especialidad: 'Terapia Ocupacional',
+    //         detalles: 'El Lic. Pedro Ramírez es un terapeuta ocupacional con más de 5 años de experiencia en el tratamiento de pacientes con problemas de salud mental. Con una Licenciatura en Terapia Ocupacional en la Universidad Nacional de Trujillo, el Lic. Ramírez se especializa en el diseño de actividades ...',
+    //     },
+    //     {
+    //         id: 7,
+    //         nombres: 'Ana Torres',
+    //         especialidad: 'Terapia Ocupacional',
+    //         detalles: 'Especialista en terapia ocupacional para el tratamiento de trastornos del espectro autista y otras discapacidades neurológicas. Licenciada en Terapia Ocupacional por la Universidad de Lima.',
+    //     },
+    //     {
+    //         id: 8,
+    //         nombres: 'Luisa Fernández',
+    //         especialidad: 'Psicoterapia',
+    //         detalles: 'Especialista en terapia de pareja y terapia de familia para la resolución de conflictos y mejora de la comunicación. Maestría en Psicología Clínica y de la Salud en la Universidad de Barcelona.',
+    //     },
+    // ]
 
 
     useEffect(() => {
-        setLoading(false)
-    },);
+        setLoading(true)
+        const fetchData = async () => {
+            try {
+                const response = await getAllUsersWithAI();
+                setEspecialistas(response);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error al obtener los especialistas:', error);
+                setLoading(false);
+            }
+        }
+        fetchData();
+    },[]);
 
-    const psicologos = especialistas.filter(especialista => especialista.especialidad === especialidades.psicologia);
-    const psiquiatras = especialistas.filter(especialista => especialista.especialidad === especialidades.psiquiatria);
-    const terapeutasO = especialistas.filter(especialista => especialista.especialidad === especialidades.terapiaO);
-    const terapeutasF = especialistas.filter(especialista => especialista.especialidad === especialidades.terapiaF);
-    const psicoterapeutas = especialistas.filter(especialista => especialista.especialidad === especialidades.psicoterapia);
+    const getAllUsersWithAI = async () => {
+        try {
+            const usersResponse = await getAllUsers();
+            const users = usersResponse.data
+
+            const academicInfoResponse = await getAllAI();
+            const academicInfoArray = academicInfoResponse.data;
+        
+            const usersWithAI = users.map((user) => {
+              const userAcademicInfo = academicInfoArray.find((info) => info.userId === user.id);
+              return {
+                ...user,
+                ...(userAcademicInfo || {}), 
+              };
+            });  
+
+            return usersWithAI as Array<typeof usersWithAI[number]>;
+        } catch (error) {
+            console.error('Error al obtener los especialistas:', error);
+            throw error;
+        }
+    }
+
+    
+
+    const psicologos = especialistas.filter(especialista => especialista.rol === especialidades.psicologia);
+    const psiquiatras = especialistas.filter(especialista => especialista.rol === especialidades.psiquiatria);
+    const terapeutasO = especialistas.filter(especialista => especialista.rol === especialidades.terapiaO);
+    const terapeutasF = especialistas.filter(especialista => especialista.rol === especialidades.terapiaF);
+    const psicoterapeutas = especialistas.filter(especialista => especialista.rol === especialidades.psicoterapia);
 
     // const cardsPsicologia = especialistas.map((especialista, id) => (
     //     <CardComponent key={id} nombres={especialista.nombres} detalles={especialista.detalles} />
@@ -108,7 +147,7 @@ export const EspecialistasPag = () => {
                                 </div>
                                 <div className='flex flex-wrap justify-between w-full'>
                                     {psicologos.map(especialista => (
-                                        <CardComponent key={especialista.id} nombres={especialista.nombres} detalles={especialista.detalles} />
+                                        <CardComponent key={especialista.id} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
                                     ))}
                                 </div>
                             </TabPane>
@@ -123,7 +162,7 @@ export const EspecialistasPag = () => {
                                 </div>
                                 <div className='flex flex-wrap justify-between w-full'>
                                     {psiquiatras.map(especialista => (
-                                        <CardComponent key={especialista.id} nombres={especialista.nombres} detalles={especialista.detalles} />
+                                        <CardComponent key={especialista.id} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
                                     ))}
                                 </div>
                             </TabPane>
@@ -138,7 +177,7 @@ export const EspecialistasPag = () => {
                                 </div>
                                 <div className='flex flex-wrap justify-between w-full'>
                                     {terapeutasF.map(especialista => (
-                                        <CardComponent key={especialista.id} nombres={especialista.nombres} detalles={especialista.detalles} />
+                                        <CardComponent key={especialista.id} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
                                     ))}
                                 </div>
                             </TabPane>
@@ -153,7 +192,7 @@ export const EspecialistasPag = () => {
                                 </div>
                                 <div className='flex flex-wrap justify-between w-full'>
                                     {terapeutasO.map(especialista => (
-                                        <CardComponent key={especialista.id} nombres={especialista.nombres} detalles={especialista.detalles} />
+                                        <CardComponent key={especialista.id} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
                                     ))}
                                 </div>
                             </TabPane>
@@ -168,7 +207,7 @@ export const EspecialistasPag = () => {
                                 </div>
                                 <div className='flex flex-wrap justify-between w-full'>
                                     {psicoterapeutas.map(especialista => (
-                                        <CardComponent key={especialista.id} nombres={especialista.nombres} detalles={especialista.detalles} />
+                                        <CardComponent key={especialista.id} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
                                     ))}
                                 </div>
                             </TabPane>
