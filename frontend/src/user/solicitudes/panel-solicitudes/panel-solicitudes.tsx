@@ -77,7 +77,7 @@ export const PanelSolicitudes = ({ stateFilter }) => {
         {reserves.map((reserve, index) => (
           <div key={index} className="w-full flex justify-between items-center border p-6 my-2">
             <div className="w-10 h-10 bg-slate-500"></div>
-            <div className="text-base">{reserve.description}</div>
+            <div className="text-base">{reserve.description + " de: " + reserve.client.name + " "+ reserve.client.lastName }</div>
             <div className="flex gap-x-4">
               <Button
                 type="primary"

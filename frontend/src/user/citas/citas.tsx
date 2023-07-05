@@ -51,10 +51,10 @@ export const CitasComponent = () => {
                 <div className="w-20 flex justify-center items-center">
                   <div className="w-10 h-10 rounded-full bg-slate-50"></div>
                 </div>
-                <div className="px-4 flex flex-col justify-center">
-                  <div>{cita.state}</div>
-                  <div>{cita.client.name}</div>
-                  <div>{cita.date}</div>
+                <div className="px-4 flex flex-col justify-center ">
+                  <div className=""><b>Estado: </b>{cita.state}</div>
+                  <div className=""><b>Paciente: </b>{cita.client.name + ' '+ cita.client.lastName}</div>
+                  <div className="mb-2"><b>Fecha: </b>{cita.date}</div>
                 </div>
               </div>
             );

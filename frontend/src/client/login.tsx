@@ -106,7 +106,7 @@ export default function LoginClient() {
             </div>
 
             <div className="errors-message">
-              <div>{errors.email ? "Corregir el email" : ""}</div>
+              <div className="mb-2">{errors.email ? "Corregir el email" : ""}</div>
               <div>{errors.password ? "Corregir la contraseña" : ""}</div>
             </div>
           </div>
