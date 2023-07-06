@@ -21,6 +21,8 @@ export default {
     especialistas: "/especialistas",
     especialistasVerEspecialista: "/especialistas/ver-especialista/:id",
     infoAyuda: "/info-ayuda",
+    foros:"/foros",
+    forosVerForo:"/foros/ver-foro",
     historial: "/historial",
   },
 };

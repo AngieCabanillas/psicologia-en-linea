@@ -135,7 +135,7 @@ export default function RegistroClient() {
               <input
                 type="button"
                 onClick={iniciarSesion}
-                value="Iniciar Sesión"
+                value="Regístrate"
               />
             </div>
           </div>

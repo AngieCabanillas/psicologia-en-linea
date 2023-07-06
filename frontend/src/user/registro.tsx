@@ -60,8 +60,8 @@ export default function RegistroUsuario() {
     <>
       <div className="body px-20 py-10 h-full w-full">
         <div className="header text-center max-w-2xl mx-auto">
-          <img src={logo} alt="logo serenity" className="logo" />
-          <p className="mb-6">Te damos la bienvenida a "Serenity", el espacio en línea dedicado a promover el bienestar emocional y psicológico de las personas.</p>
+          <img src={logo} alt="logo serenity" className="mx-auto mb-4" />
+          <p className="mb-2">Te damos la bienvenida a "Serenity", el espacio en línea dedicado a promover el bienestar emocional y psicológico de las personas.</p>
           <span className="text mr-4">¿Ya estas registrado?</span>
           <Link to="/login-user">
             <a href="/" className="text font-bold">
@@ -69,7 +69,7 @@ export default function RegistroUsuario() {
             </a>
           </Link>
         </div>
-        <div className="form-container p-10 my-20 rounded-xl bg-white">
+        <div className="form-container p-10 my-6 rounded-xl bg-white">
           <h2 className="mb-4 text-lg font-bold">Datos Generales:</h2>
           <div className="row-1 flex flex-col mb-4 md:mb-0 md:flex-row gap-6 w-full">
             <div className="input-field w-full md:w-1/2">

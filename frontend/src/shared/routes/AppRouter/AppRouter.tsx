@@ -20,6 +20,8 @@ import RegistroClient from "../../../client/registro";
 import { EspecialistaPage } from "../../../client/ver-especialistas/ver-especialista/especialista";
 import { EspecialistasPag } from "../../../client/ver-especialistas/ver-especialistas";
 import { HistorialComponent } from "../../../client/historial-citas/historial";
+import { ForosPag } from "../../../client/foros/ver-foros";
+import { VerForoPag } from "../../../client/foros/ver-foro/ver-foro";
 
 const AppRouter = () => {
   return (
@@ -54,6 +56,9 @@ const AppRouter = () => {
       <Route element={<ProtectedRoutesUser pathname={paths.user.login} />}>
         <Route path={paths.user.home} element={<Home />} />
         <Route path={paths.user.infoAyuda} element={<InfoAyudaPag />} />
+        <Route path={paths.client.foros} element={<ForosPag />} />
+        <Route path={paths.client.forosVerForo} element={<VerForoPag />} />
+
         <Route path={paths.user.citas} element={<CitasComponent />} />
         <Route path={paths.user.myHorario} element={<MyHorarioComponent />} />
         <Route

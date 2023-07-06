@@ -55,7 +55,7 @@ export default function LoginClient() {
   };
 
   return (
-    <div className="container">
+    <div className="contenedor mx-auto">
       <div className="container-forms">
         <div className="forms">
           <div className="form-login">
@@ -105,8 +105,8 @@ export default function LoginClient() {
               </Link>
             </div>
 
-            <div className="errors-message">
-              <div className="mb-2">{errors.email ? "Corregir el email" : ""}</div>
+            <div className="errors-message text-center -mt-6">
+              <div>{errors.email ? "Corregir el email" : ""}</div>
               <div>{errors.password ? "Corregir la contraseña" : ""}</div>
             </div>
           </div>

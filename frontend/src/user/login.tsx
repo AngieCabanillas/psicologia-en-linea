@@ -55,7 +55,7 @@ export default function LoginUsuario() {
   };
 
   return (
-    <div className="container">
+    <div className="contenedor">
       <div className="container-forms">
         <div className="forms">
           <div className="form-login">
@@ -105,7 +105,7 @@ export default function LoginUsuario() {
               </Link>
             </div>
 
-            <div className="errors-message">
+            <div className="errors-message text-center -mt-6">
               <div>{errors.email ? "Corregir el email" : ""}</div>
               <div>{errors.password ? "Corregir la contraseña" : ""}</div>
             </div>
