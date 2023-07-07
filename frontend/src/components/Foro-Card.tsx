@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import './Foro-Card.css'
+import { LikeOutlined } from '@ant-design/icons'
 
 export const ForoCard = (props) =>{
 
@@ -33,7 +34,7 @@ export const ForoCard = (props) =>{
             </div>
             <div className="foro-buttons w-full justify-between sm:justify-start relative flex gap-4">
                 <div className='foro-save w-14 rounded-xl bg-gray-100 flex justify-center gap-6 p-4'>
-                    <p className='text-lg text-gray-600 font-bold'>S</p>
+                    <LikeOutlined className='text-lg text-gray-600 font-bold'/>
                 </div>
                 <Link to='/foros/ver-foro'>
                     <div className="foro-add w-fit rounded-xl bg-gray-100 flex items-center gap-6 p-4">
