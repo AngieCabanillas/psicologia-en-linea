@@ -28,7 +28,7 @@ export const VerForoPag = () => {
 
             <section className="px-10 py-32 sm:px-20 -mb-32 h-full" style={{ backgroundColor: '#EDF0F7' }}>
                 <div className="foro-card p-6 sm:p-10 rounded-xl bg-white">
-                    <h3 className="foro-title text-xl sm:text-3xl font-bold mb-6">Título del Foro de Discusión</h3>
+                    <h3 className="foro-titulo text-xl sm:text-3xl font-bold mb-6">Título del Foro de Discusión</h3>
                     <div className="foro-identifiers md:flex justify-between">
                         <div className="profile flex relative mb-6 md:mb-0 items-center">
                             <div className="profile-pic ml-2 mr-4 w-16 h-16 rounded-xl overflow-hidden">

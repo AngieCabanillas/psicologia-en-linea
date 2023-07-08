@@ -6,6 +6,7 @@ import { LoginResolver } from "./login.yup";
 import { useQuery } from "react-query";
 import { getUserByEmailAndPassword } from "../shared/services/user.service";
 import { useSerenityContext } from "../shared/contexts/SerenityProvider";
+import { LeftCircleOutlined } from "@ant-design/icons";
 
 export default function LoginUsuario() {
   const navigate = useNavigate();
@@ -57,9 +58,11 @@ export default function LoginUsuario() {
   return (
     <div className="contenedor">
       <div className="container-forms">
-        <div className="forms">
+        <div className="forms relative">
+          <a href="/" className="rollback z-20"><LeftCircleOutlined className="text-4xl text-tertiaryColor"/></a>
           <div className="form-login">
-            <img src={logo} alt="" className="logo" />
+            <img src={logo} alt="" className="logo-user" />
+            <p className="text-center font-semibold text-lg">Especialista</p>
 
             <div className="input-field">
               <label>Usuario:</label>

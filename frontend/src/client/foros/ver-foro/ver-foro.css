@@ -1,7 +1,7 @@
 .foro-card{
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
-.foro-title{
+.foro-titulo{
     color:#2D3648;
 }
 
@@ -25,7 +25,7 @@
 }
 
 .foro-add:hover{
-    border: none;
+    border: 2px solid #2D3648;
     background-color: #2D3648;
 }
 

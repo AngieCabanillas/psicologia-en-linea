@@ -34,16 +34,16 @@ export const ModalForo = ({
             </div>
         }>
             <div className="w-full py-6">
-                <div className="input-field w-full mb-2">
-                    <label className="block">Nombre del Foro:</label>
+                <div className="input-field w-full mb-4">
+                    <label className="block mb-2">Nombre del Foro:</label>
                     <input type="text" placeholder="Ingresa el nombre de foro..." required/>
                 </div>
-                <div className="foro-input input-field w-full mb-2">
-                    <label className="block">Descripción del Foro:</label>
+                <div className="foro-input input-field w-full mb-4">
+                    <label className="block mb-2">Descripción del Foro:</label>
                     <textarea placeholder="Ingresa la descripción de tu foro..." rows={3} maxLength={250} required />
                 </div>
-                <div className="foro-input w-full mb-2">
-                    <label className="block">Categoría del Foro:</label>
+                <div className="foro-input input-field w-full mb-4">
+                    <label className="block mb-2">Categoría del Foro:</label>
                     <select className="select">
                         <option value="ANSIEDAD">
                             Ansiedad

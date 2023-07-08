@@ -5,10 +5,10 @@ export function DatosEspecialistaPage(props) {
     
     return (
         <section className='presentation p-24 sm:p-32 flex flex-col md:flex-row items-center justify-center'>
-            <div className="presentation__img w-32 flex-shrink-0 m-auto md:mr-20">
-                <img className="mx-auto w-full block" src="/img/user.png" alt="Foto de Usuario" />
+            <div className="presentation__img w-4/12 flex-shrink-0 m-auto md:mr-20">
+                <img className="mx-auto w-36 block" src="/img/user.png" alt="Foto de Usuario" />
             </div>
-            <div className="presentation__datos relative">
+            <div className="presentation__datos w-8/12 relative">
                 <div className="presentation__title text-center md:text-start relative z-10">
                     {props.name + " " + props.lastName}
                 </div>

@@ -222,7 +222,7 @@ export default function RegistroUsuario() {
               />
             </div>
           </div>
-          <div className="submit w-full">
+          <div className="submit-registro w-full ">
             <input type="button" onClick={iniciarSesion} value="Regístrate" />
           </div>
         </div>

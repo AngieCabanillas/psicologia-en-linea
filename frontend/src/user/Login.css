@@ -17,29 +17,25 @@
 .form-login {
   position: relative;
   max-width: 430px;
-  height: 540px;
+  height: fit-content;
   width: 440px;
   border: 2px solid #2d3648;
   border-radius: 8px;
   padding: 40px;
 }
 
-.logo {
+.logo-user {
   display: block;
   margin: 0 auto;
   height: 45px;
   text-align: center;
   margin-top: 30px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .form-login .input-field {
-  display: flex;
-  flex-direction: column;
-  height: 50px;
   width: 100%;
-  margin-top: 50px;
-  gap: 8px;
+  margin-top: 20px;
 }
 
 .form-login .input-field label {
@@ -64,9 +60,6 @@
   border: 2px solid #cbd2e0;
 }
 
-.form-login .button {
-  margin-top: 60px;
-}
 
 .form-login .button input {
   background: #2d3648;
@@ -106,4 +99,17 @@
 .errors-message {
   padding-top: 40px;
   color: red;
+}
+
+.rollback{
+  color: #2d3648;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.rollback:hover{
+  color: #58637d;
 }

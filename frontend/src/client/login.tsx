@@ -6,6 +6,7 @@ import { LoginResolver } from "./login.yup";
 import { useQuery } from "react-query";
 import { useSerenityContext } from "../shared/contexts/SerenityProvider";
 import { getClientByEmailAndPassword } from "../shared/services/client.service";
+import { LeftCircleOutlined } from "@ant-design/icons";
 
 export default function LoginClient() {
   const navigate = useNavigate();
@@ -57,11 +58,12 @@ export default function LoginClient() {
   return (
     <div className="contenedor mx-auto">
       <div className="container-forms">
-        <div className="forms">
-          <div className="form-login">
-            <img src={logo} alt="" className="logo" />
-
-            <div className="input-field">
+        <div className="forms relative">
+          <a href="/" className="rollback z-20"><LeftCircleOutlined className="text-4xl text-tertiaryColor"/></a>
+          <div className="form-login-cliente">
+            <img src={logo} alt="" className="logo-cliente" />
+            <p className="text-center font-semibold text-lg">Paciente</p>
+            <div className="input-field-cliente">
               <label>Usuario:</label>
               <Controller
                 name="email"
@@ -77,7 +79,7 @@ export default function LoginClient() {
                 )}
               />
             </div>
-            <div className="input-field">
+            <div className="input-field-cliente">
               <label>Contraseña:</label>
               <Controller
                 name="password"
@@ -94,11 +96,11 @@ export default function LoginClient() {
               />
             </div>
 
-            <div className="input-field button">
+            <div className="input-field-cliente button">
               <input type="button" onClick={onLogin} value="Iniciar Sesión" />
             </div>
 
-            <div className="login-signup">
+            <div className="login-signup-cliente">
               <span className="text">¿No estas registrado?</span>
               <Link to="/registro-client">
                 <a className="text signup-text">Clickea aquí.</a>

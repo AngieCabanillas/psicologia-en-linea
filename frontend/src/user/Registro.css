@@ -14,10 +14,6 @@
 
 }
 
-.input-field{
-  @apply md:mb-6
-}
-
 .input-field label{
   letter-spacing: -0.01em;
   color: #2d3648;
@@ -29,7 +25,7 @@
 .input-field input, select, textarea{
   border: 2px solid #cbd2e0;
 
-  @apply w-full text-base p-2 mt-4 rounded-md
+  @apply w-full text-base p-2 rounded-md
 }
 
 .input-field input, select,textarea:is(:focus, :valid){
@@ -37,8 +33,7 @@
 
 }
 
-.submit input{
+.submit-registro input{
   background-color: #2d3648;
-
   @apply font-semibold p-4 rounded-md mx-auto text-white
 }

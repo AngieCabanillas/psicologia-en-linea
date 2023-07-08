@@ -150,7 +150,7 @@ export const ForoCard = ({ foros }) => {
                     <Link to='/foros/ver-foro'>
                       <div className="foro-add w-fit rounded-xl bg-gray-100 flex items-center gap-6 p-4">
                         <span className="text-lg text-gray-600 font-bold">A</span>
-                        <p className="text-md sm:text-lg text-gray-600 font-light  whitespace-nowrap">Añadir respuesta</p>
+                        <p className="text-md sm:text-lg text-gray-600 font-light whitespace-nowrap">Añadir respuesta</p>
                       </div>
                     </Link>
                     <div className='profiles flex gap-2 absolute right-0  bottom-20 sm:bottom-0'>
