@@ -221,7 +221,7 @@ export const HistorialComponent = () =>{
 
             } catch (error) {
             console.log("algo anda mal");
-            
+            setLoading(false);
             }
       };
 
@@ -305,7 +305,8 @@ export const HistorialComponent = () =>{
                             </div>
                         </div>
                         <div className="card__content p-4 sm:p-10 grid grid-cols-1 xl:grid-cols-2 gap-4 justify-items-center">
-                            {cardsAceptadas}
+                            {cardsAceptadas.length ? cardsAceptadas : <div className=' w-full h-full flex items-center justify-center'>
+                                <p className='text-lg font-medium italic'>No se han encontrado citas registradas.</p></div>}
                         </div>
                     </section>
                     <section className="card mb-20">
@@ -318,7 +319,8 @@ export const HistorialComponent = () =>{
                             </div>
                         </div>
                         <div className="card__content p-4 sm:p-10 grid grid-cols-1 xl:grid-cols-2 gap-4 justify-items-center">
-                            {cardsEnEspera}
+                            {cardsEnEspera.length ? cardsEnEspera : <div className=' w-full h-full flex items-center justify-center'>
+                                <p className='text-lg font-medium italic'>No se han encontrado citas registradas.</p></div>}
                         </div>
                     </section>
                     <section className="card mb-20">
@@ -331,7 +333,8 @@ export const HistorialComponent = () =>{
                             </div>
                         </div>
                         <div className="card__content p-4 sm:p-10 grid grid-cols-1 xl:grid-cols-2 gap-4 justify-items-center">
-                            {cardsPasadas}
+                            {cardsPasadas.length ? cardsPasadas : <div className=' w-full h-full flex items-center justify-center'>
+                                <p className='text-lg font-medium italic'>No se han encontrado citas registradas.</p></div>}
                         </div>
                     </section>
                 </section>

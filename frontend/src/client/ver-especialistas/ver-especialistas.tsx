@@ -112,8 +112,6 @@ export const EspecialistasPag = () => {
         }
     }
 
-    
-
     const psicologos = especialistas.filter(especialista => especialista.rol === especialidades.psicologia);
     const psiquiatras = especialistas.filter(especialista => especialista.rol === especialidades.psiquiatria);
     const terapeutasO = especialistas.filter(especialista => especialista.rol === especialidades.terapiaO);
@@ -146,9 +144,10 @@ export const EspecialistasPag = () => {
                                     </div>
                                 </div>
                                 <div className='flex flex-wrap justify-between w-full'>
-                                    {psicologos.map(especialista => (
+                                    {psicologos.length ? psicologos.map(especialista => (
                                         <CardComponent id={especialista.userId} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
-                                    ))}
+                                    )) : <div className=' w-full h-full flex items-center justify-center'>
+                                    <p className='text-lg font-medium italic'>No se han encontrado especialistas para esta especialidad.</p></div>}
                                 </div>
                             </TabPane>
                             <TabPane className='flex flex-wrap justify-between' tab='Psiquiatras' key='2'>
@@ -161,9 +160,10 @@ export const EspecialistasPag = () => {
                                     </div>
                                 </div>
                                 <div className='flex flex-wrap justify-between w-full'>
-                                    {psiquiatras.map(especialista => (
+                                    {psiquiatras.length ? psiquiatras.map(especialista => (
                                         <CardComponent id={especialista.userId} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
-                                    ))}
+                                    )): <div className=' w-full h-full flex items-center justify-center'>
+                                    <p className='text-lg font-medium italic'>No se han encontrado especialistas para esta especialidad.</p></div>}
                                 </div>
                             </TabPane>
                             <TabPane tab='Terapeutas familiares' key='3'>
@@ -176,9 +176,10 @@ export const EspecialistasPag = () => {
                                     </div>
                                 </div>
                                 <div className='flex flex-wrap justify-between w-full'>
-                                    {terapeutasF.map(especialista => (
+                                    {terapeutasF.length ? terapeutasF.map(especialista => (
                                         <CardComponent id={especialista.userId} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
-                                    ))}
+                                    )) : <div className=' w-full h-full flex items-center justify-center'>
+                                    <p className='text-lg font-medium italic'>No se han encontrado especialistas para esta especialidad.</p></div>}
                                 </div>
                             </TabPane>
                             <TabPane tab='Terapeutas ocupacionales' key='4'>
@@ -191,9 +192,10 @@ export const EspecialistasPag = () => {
                                     </div>
                                 </div>
                                 <div className='flex flex-wrap justify-between w-full'>
-                                    {terapeutasO.map(especialista => (
+                                    {terapeutasO.length ? terapeutasO.map(especialista => (
                                         <CardComponent id={especialista.userId} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
-                                    ))}
+                                    )): <div className=' w-full h-full flex items-center justify-center'>
+                                    <p className='text-lg font-medium italic'>No se han encontrado especialistas para esta especialidad.</p></div>}
                                 </div>
                             </TabPane>
                             <TabPane tab='Psicoterapeutas' key='5'>
@@ -206,9 +208,10 @@ export const EspecialistasPag = () => {
                                     </div>
                                 </div>
                                 <div className='flex flex-wrap justify-between w-full'>
-                                    {psicoterapeutas.map(especialista => (
+                                    {psicoterapeutas.length ? psicoterapeutas.map(especialista => (
                                         <CardComponent id={especialista.userId} nombres={especialista.name + " " + especialista.lastName} detalles={especialista.description} />
-                                    ))}
+                                    )): <div className=' w-full h-full flex items-center justify-center'>
+                                    <p className='text-lg font-medium italic'>No se han encontrado especialistas para esta especialidad.</p></div>}
                                 </div>
                             </TabPane>
                         </Tabs>

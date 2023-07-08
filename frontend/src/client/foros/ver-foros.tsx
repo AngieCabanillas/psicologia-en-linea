@@ -1,7 +1,7 @@
 import { ForosPresentationComponent } from "./presentation"
 import { Spin } from "antd"
 import { LoadingOutlined, } from '@ant-design/icons'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import './ver-foros.css'
 import { ForoCard } from "../../components/Foro-Card"
 import { ModalForo } from "./modal-foro/modal-foro"
@@ -20,6 +20,20 @@ export const ForosPag = () => {
     const closeModalForo = () => {
         setModalForoOpen(() => false);
     };
+
+    useEffect(() => {
+        setLoading(true)
+        const fetchData = async () => {
+            try {
+                setLoading(false);
+            } catch (error) {
+                setLoading(false);
+            }
+        }
+        fetchData();
+    },[]);
+
+
 
     return (
         <Spin spinning={loading} className="h-100" indicator={circleIcon}>
