@@ -14,7 +14,6 @@ export const ForoCard = ({ foros }) => {
     const [clientes, setClientes] = useState<ClientType[]>();
     const [especialistas, setEspecialistas] = useState<UserType[]>();
 
-
     const categorias = [
         {
             id: 1,
@@ -118,7 +117,7 @@ export const ForoCard = ({ foros }) => {
             return (
               <section className="foro-card mb-5 p-6 sm:p-10 rounded-xl bg-white" key={foro.id}>
                 <div>
-                  <Link to="/foros/ver-foro">
+                  <Link to={`/foros/ver-foro/${foro.id}`}>
                     <h3 className="foro-title text-xl sm:text-3xl font-bold mb-6 color-bg">{foro.title}</h3>
                   </Link>
                   <div className="foro-identifiers md:flex justify-between">
@@ -147,13 +146,13 @@ export const ForoCard = ({ foros }) => {
                     <div className='foro-save w-14 rounded-xl bg-gray-100 flex justify-center gap-6 p-4'>
                       <LikeOutlined className='text-lg text-gray-600 font-bold'/>
                     </div>
-                    <Link to='/foros/ver-foro'>
+                    <Link to={`/foros/ver-foro/${foro.id}`}>
                       <div className="foro-add w-fit rounded-xl bg-gray-100 flex items-center gap-6 p-4">
                         <span className="text-lg text-gray-600 font-bold">A</span>
                         <p className="text-md sm:text-lg text-gray-600 font-light  whitespace-nowrap">Añadir respuesta</p>
                       </div>
                     </Link>
-                    <div className='profiles flex gap-2 absolute right-0  bottom-20 sm:bottom-0'>
+                    <div className='profiles gap-2 absolute right-0 hidden  bottom-20 sm:bottom-0'>
                       <div className='w-12 h-12 rounded-xl overflow-hidden'>
                         <img className='object-cover object-right w-full h-full' src="/img/info.jpg" alt="Perfil 1" />
                       </div>
