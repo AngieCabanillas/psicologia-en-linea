@@ -34,6 +34,27 @@ export const ForosPag = () => {
     },[]);
 
 
+    const foros = [
+        {
+            id: 1,
+            title: 'Problemas con mi mamá',
+            idPersona: 1,
+            rol: 'PACIENTE',
+            fecha: new Date(),
+            categoria: 2,
+            descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate similique placeat optio architecto quae veniam dolorum! Vitae eius, beatae, fuga dolores quo fugit odit praesentium consequuntur nihil quasi eligendi voluptates.'
+        },
+        {
+            id: 1,
+            title: 'La falta de motivación tiene solución',
+            idPersona: 1,
+            rol: 'ESPECIALISTA',
+            fecha: new Date(),
+            categoria: 1,
+            descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate similique placeat optio architecto quae veniam dolorum! Vitae eius, beatae, fuga dolores quo fugit odit praesentium consequuntur nihil quasi eligendi voluptates.'
+        },   
+    ]
+
 
     return (
         <Spin spinning={loading} className="h-100" indicator={circleIcon}>
@@ -48,7 +69,7 @@ export const ForosPag = () => {
                         <p className="text-white text-3xl">+</p>
                     </div>
                 </div>
-                <ForoCard />
+                <ForoCard foros={foros} />
                 <ModalForo
                     modalForoOpen={modalForoOpen}
                     setModalForoClose={closeModalForo}

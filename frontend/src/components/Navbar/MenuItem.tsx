@@ -40,4 +40,10 @@ export const MenuItems = [
     cName: "nav-links",
     userType: "PACIENTE",
   },
+  {
+    title: "Foros",
+    url: "/foros",
+    cName: "nav-links",
+    userType: "ESPECIALISTA",
+  },
 ];
