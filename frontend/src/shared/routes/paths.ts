@@ -22,7 +22,7 @@ export default {
     especialistasVerEspecialista: "/especialistas/ver-especialista/:id",
     infoAyuda: "/info-ayuda",
     foros:"/foros",
-    forosVerForo:"/foros/ver-foro",
+    forosVerForo:"/foros/ver-foro/:id",
     historial: "/historial",
   },
 };
