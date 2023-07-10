@@ -88,7 +88,7 @@ export default function LoginClient() {
                   <input
                     value={field.value}
                     onChange={field.onChange}
-                    type="text"
+                    type="password"
                     placeholder="Ingresa tu contraseña"
                     required
                   />

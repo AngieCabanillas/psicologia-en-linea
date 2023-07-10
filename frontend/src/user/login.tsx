@@ -89,7 +89,7 @@ export default function LoginUsuario() {
                   <input
                     value={field.value}
                     onChange={field.onChange}
-                    type="text"
+                    type="password"
                     placeholder="Ingresa tu contraseña"
                     required
                   />
