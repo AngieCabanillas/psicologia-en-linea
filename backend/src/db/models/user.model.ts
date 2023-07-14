@@ -57,6 +57,11 @@ class User extends Model {
       as: "academicInformation",
       foreignKey: "userId",
     });
+
+    this.hasMany(models.FORUM, {
+      as: "forum",
+      foreignKey: "userId",
+    });
   }
 
   static config(sequelize: Sequelize) {

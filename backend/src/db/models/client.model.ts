@@ -43,6 +43,11 @@ class Client extends Model {
       as: "reserve",
       foreignKey: "clientId",
     });
+
+    this.hasMany(models.FORUM, {
+      as: "forum",
+      foreignKey: "clientId",
+    });
   }
 
   static config(sequelize: Sequelize) {
