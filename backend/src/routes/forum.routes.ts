@@ -73,6 +73,7 @@ router.get(
     }
   }
 );
+
 router.get(
   "/user/:id",
   validatorHandler(getForumSchema, "params"),
